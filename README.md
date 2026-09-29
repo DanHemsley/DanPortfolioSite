@@ -35,26 +35,29 @@ Needs **Node 18.18 or newer** (Node 20+ recommended). `sharp` is optional: only 
 
 | Branch | Who | Rule |
 | --- | --- | --- |
-| `main` | Dan | Source of truth: what's live. Changes only through pull requests. |
-| `figma` | Figma Make | Figma's working branch (it commits here itself). |
+| `main` | Dan | Source of truth: what's live. Protected: changes only through pull requests. |
+| `figma` | Dan | What Figma Make pulls from. Protected: only receives pull requests from `main`. |
 | `claude/<topic>` | Claude | One short-lived branch per task, cut from `main`. |
+| `figma/<topic>` | Figma Make | Only when you ask Figma to push something you changed in Figma. |
 
 ```
-claude/<topic> ──PR──▶ main ──PR──▶ figma ──▶ Figma Make preview ──▶ Publish
-                        ▲                │
-                        └──────PR────────┘   (changes made in Figma)
+claude/<topic> ──PR──▶ main ──PR──▶ figma ──(pull)──▶ Figma Make ──▶ Publish
+                        ▲
+figma/<topic> ──PR──────┘   (only when you ask Figma to push)
 ```
 
 1. **Claude's changes:** a `claude/<topic>` branch, tested, then a pull request into `main`.
-2. **Sync to Figma:** a pull request from `main` into `figma`; Figma Make pulls it and you check the preview.
-3. **Publish** from Figma Make only once `figma` contains everything in `main`.
-4. **Figma's changes:** a pull request from `figma` into `main`.
+2. **Sync to Figma:** a pull request from `main` into `figma`; then ask Figma Make to pull and check the preview.
+3. **Publish** from Figma Make once it has pulled the latest `figma` (check the version tooltip).
+4. **Keeping a change made in Figma:** ask Figma's agent to *push to a new branch `figma/<short-description>`*, then open a pull request from it into `main`. Check its file list first: Figma's own root files (`package.json`, lockfile, `.mcp.json`) usually shouldn't be merged.
+
+`main` and `figma` are protected by a GitHub ruleset (Settings → Rules → Rulesets → *protected branches*): no direct pushes, no force pushes, no deletion. Figma's automatic commits can't reach them.
 
 House rules:
 
 - Package upgrades only on `claude/*` branches. Don't run `npm install`/`npm update` in Figma, and never `npm audit fix --force`.
 - Don't delete files in Figma Make's workspace. Its template relies on some files the app doesn't import.
-- Protect `main` on GitHub (Settings → Branches → require a pull request before merging).
+- Figma only syncs `src/`, `public/` and `assets/`; root files stay as Figma's own copies.
 
 **Site version:** hover the logo on the homepage to see it (e.g. `v0.1.0`). It lives in `src/version.ts` (not `package.json`, which Figma Make doesn't update on pull) and only `claude/*` branches bump it, so it shows at a glance whether Figma Make has the latest `main`.
 
