@@ -3,6 +3,7 @@ import { ArrowIcon } from '../components/icons';
 import { images } from '../images';
 import { CASE_STUDY, CONTACT, CV, HOME } from '../links';
 import { usePageMeta } from '../usePageMeta';
+import { SITE_VERSION } from '../version';
 
 // Homepage copy, verbatim from the "Lander Welcome" design.
 const copy = {
@@ -24,7 +25,7 @@ export function Home() {
       <div className="container home__top">
         <h1 className="home__headline">{copy.headline}</h1>
         {/* Native tooltip with the site version, so it's easy to confirm which build Figma is serving. */}
-        <img className="home__mark" src="/favicon.svg" width="137" height="137" alt="" title={`v${__APP_VERSION__}`} />
+        <img className="home__mark" src="/favicon.svg" width="137" height="137" alt="" title={SITE_VERSION} />
       </div>
 
       <nav className="container home__nav" aria-label="Main navigation">

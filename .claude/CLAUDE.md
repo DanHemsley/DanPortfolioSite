@@ -35,8 +35,9 @@ Before committing, check `git status -sb` shows the expected branch. A commit on
 ## Site version
 
 The homepage logo (`.home__mark`) shows the site version as a native tooltip (`title="v0.1.0"`), so Dan can
-confirm Figma Make is serving the latest build. The version comes from `package.json` and is injected at build
-time as `__APP_VERSION__` (`vite.config.ts`).
+confirm Figma Make is serving the latest build. `src/version.ts` imports it straight from `package.json`.
+Don't use Vite `define` for this: Figma Make's dev server didn't apply it and the page crashed with
+`__APP_VERSION__ is not defined`.
 
 - **Every `claude/*` branch bumps it exactly once**, with `npm version <x.y.z> --no-git-tag-version` (updates
   `package.json` and `package-lock.json`). Patch for fixes and content, minor for new pages or features.
@@ -53,6 +54,8 @@ time as `__APP_VERSION__` (`vite.config.ts`).
   (`src/App.tsx`, `src/index.css`, `src/entries/`, `src/shared.tsx` may exist there). Deleting them broke publishing.
 - Figma Make serves its own `index.html` template (only title + lang filled from its site settings). Per-route
   metadata is created at runtime by `src/usePageMeta.ts`; keep it creating missing tags, not just updating them.
+- Don't rely on Vite `define` constants in code Figma runs. If one is unavoidable, guard it with
+  `typeof X !== 'undefined'` (see `__CV_PDF_AVAILABLE__` in `src/profile-links.ts`).
 - Figma injects `@tailwindcss/vite`, which needs Vite ≥ 5.2. Don't downgrade Vite.
 - Node ≥ 18.18 required (Dan's Mac has Node 24).
 
