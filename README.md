@@ -11,13 +11,10 @@ A single-page app: one `index.html`, with React Router rendering each route (`sr
 | `/` | `src/pages/Home.tsx` (Lander Welcome) |
 | `/uprate` | `src/pages/CaseStudy.tsx` |
 | `/cv` | `src/pages/CvPage.tsx` (copy in `src/cv-content.ts`) |
-| `/contact` | `src/pages/PendingPage.tsx` (placeholder) |
+| `/contact` | `src/pages/ContactPage.tsx` (copy in `src/contact-content.ts`) |
 
 Routes live in `src/links.ts`; each page sets its own title, description and canonical URL with `usePageMeta`. Unknown URLs redirect to `/`. The host must serve `index.html` for every path (Figma Make and `vite preview` do this).
 
-## Before publishing
-
-- **Contact page:** replace the placeholder in `src/pages/PendingPage.tsx`.
 
 ## Commands
 
