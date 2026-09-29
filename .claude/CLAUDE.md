@@ -10,18 +10,31 @@ This file lives in `.claude/` on purpose: Figma Make keeps its own untracked
 
 | Branch | Owner | Rule |
 | --- | --- | --- |
-| `main` | Dan | Source of truth = what's live. Changes only via pull request. Never commit or push to it directly. |
-| `figma` | Figma Make | Figma's working branch; it commits here itself. Never commit to it. |
+| `main` | Dan | Source of truth = what's live. **Protected** (GitHub ruleset): changes only via a PR Dan merges. |
+| `figma` | Dan | Delivery branch Figma Make pulls from. **Protected** the same way: only receives `main` → `figma` PRs. |
 | `claude/<topic>` | Claude | One short-lived branch per task, cut from the latest `origin/main`. |
+| `figma/<topic>` | Figma Make | Only when Dan asks Figma to push something he made in Figma. Merged via PR into `main`. |
 
-Flow: `claude/<topic>` → PR → `main` → PR → `figma` → Figma Make preview → publish.
-Changes made in Figma come back via a `figma` → `main` PR.
+Flow: `claude/<topic>` → PR → `main` → PR → `figma` → Figma Make pulls → preview → publish.
+Changes Dan makes in Figma stay in Figma's workspace until he asks it to push them to `figma/<topic>`.
+
+Ruleset `protected branches` (repo is public, so it's enforced on the free plan) on `main` and `figma`:
+deletions and force pushes blocked, pull request required (0 approvals), empty bypass list. Direct pushes to
+either branch are rejected, including Claude's. Check with
+`curl -s https://api.github.com/repos/DanHemsley/DanPortfolioSite/rules/branches/main`.
+
+At the start of each task, glance at `git log origin/main` and `origin/figma`: every change should arrive via a
+merged PR. Flag anything unexpected before building on it.
+
+Reviewing a `figma/<topic>` PR for Dan: only runtime changes under `src/`, `public/`, `assets/` matter to the site.
+Figma's root files (`package.json`, lockfile, `.mcp.json`, `.figma/`) are its own copies; recommend dropping
+root-file changes unless Dan wants them, and never let them bump or change `src/version.ts`.
 
 ### How to work
 
 1. `git fetch`, then create the branch **in a separate worktree** so Dan's checkout is never switched or modified:
    `git worktree add -b claude/<topic> <scratch-dir> origin/main`
-   Dan's local folder may be on `figma` or have uncommitted changes. Don't touch it.
+   Dan's local folder may be on any branch or have uncommitted changes. Don't touch it.
 2. Make the change, **bump the site version** (below), then verify.
 3. Push with `git push -u origin claude/<topic>` and give Dan the compare link to open the PR:
    `https://github.com/DanHemsley/DanPortfolioSite/compare/main...claude/<topic>?expand=1`
