@@ -6,6 +6,7 @@ import '@fontsource-variable/montserrat';
 import './styles/main.css';
 import './styles/home.css';
 import './styles/cv.css';
+import './styles/contact.css';
 
 import { StrictMode, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -13,7 +14,7 @@ import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-route
 import { Home } from './pages/Home';
 import { CaseStudy } from './pages/CaseStudy';
 import { CvPage } from './pages/CvPage';
-import { PendingPage } from './pages/PendingPage';
+import { ContactPage } from './pages/ContactPage';
 import { CASE_STUDY, CONTACT, CV, HOME } from './links';
 
 /** Start each new page at the top; in-page #anchors are left to the browser. */
@@ -34,7 +35,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path={HOME} element={<Home />} />
         <Route path={CASE_STUDY} element={<CaseStudy />} />
         <Route path={CV} element={<CvPage />} />
-        <Route path={CONTACT} element={<PendingPage page="contact" title="Contact" />} />
+        <Route path={CONTACT} element={<ContactPage />} />
         <Route path="*" element={<Navigate to={HOME} replace />} />
       </Routes>
     </BrowserRouter>

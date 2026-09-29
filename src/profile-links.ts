@@ -6,7 +6,7 @@
  */
 export const PROFILE_LINKS = {
   // Canonical handle, matching the CV PDF.
-  linkedIn: 'https://www.linkedin.com/in/danhemsley1983',
+  linkedIn: 'https://linkedin.com/in/danhemsley1983',
 
   // Canonical address, matching the CV PDF.
   email: 'danieljhemsley@gmail.com' as string | null,

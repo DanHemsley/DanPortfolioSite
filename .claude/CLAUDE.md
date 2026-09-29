@@ -99,7 +99,7 @@ Figma's dev server didn't apply it (`__APP_VERSION__ is not defined`).
 
 ## Content rules
 
-- Copy is supplied by Dan and must stay **verbatim**: `src/content.ts` (case study), `src/cv-content.ts` (CV),
+- Copy is supplied by Dan and must stay **verbatim**: `src/content.ts` (case study), `src/cv-content.ts` (CV), `src/contact-content.ts` (contact),
   homepage copy in `src/pages/Home.tsx`. Never invent or reword copy, metrics or testimonials; mark gaps clearly instead.
 - Visual language: tokens and type in `src/styles/main.css` (Mona Sans / Menbere / Geist; blue-grey ink;
   blue `#9ECEFA`, coral `#FA9E9E`, violet `#A09EFA`, orange `#FACA9E`). Reuse them; don't add a new style.
@@ -107,12 +107,11 @@ Figma's dev server didn't apply it (`__APP_VERSION__ is not defined`).
 
 ## Canonical details
 
-- Email `danieljhemsley@gmail.com` and LinkedIn `linkedin.com/in/danhemsley1983` (both as on the CV PDF), set in
+- Email `danieljhemsley@gmail.com` and LinkedIn `https://linkedin.com/in/danhemsley1983` (both as on the CV PDF), set in
   `src/profile-links.ts`. Keep the site and `public/dan-hemsley-cv.pdf` consistent.
 
 ## Open items
 
-- Contact page: still a placeholder (`src/pages/PendingPage.tsx`).
 - "How I Work" nav item removed at Dan's request; the section remains at `/uprate#how-i-work`.
 
 ## Images

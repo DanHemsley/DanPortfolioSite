@@ -1267,25 +1267,12 @@ a.nav__link:hover {
 }
 
 /* ==========================================================================
-   Current page + pending pages (CV, Contact)
+   Current page
    ========================================================================== */
 .nav__link[aria-current='page'] {
   background: var(--ink-900);
   border-color: var(--ink-900);
   color: var(--white);
-}
-.pending {
-  display: grid;
-  gap: 32px;
-}
-.pending__placeholder {
-  padding: 48px 32px;
-  border: 2px dashed var(--line);
-  border-radius: var(--radius);
-  font-family: var(--f-body);
-  font-weight: 400;
-  color: var(--muted);
-  text-align: center;
 }
 
 /* ==========================================================================
