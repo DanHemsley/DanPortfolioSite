@@ -22,7 +22,7 @@ Changes made in Figma come back via a `figma` → `main` PR.
 1. `git fetch`, then create the branch **in a separate worktree** so Dan's checkout is never switched or modified:
    `git worktree add -b claude/<topic> <scratch-dir> origin/main`
    Dan's local folder may be on `figma` or have uncommitted changes. Don't touch it.
-2. Make the change, then verify (below).
+2. Make the change, **bump the site version** (below), then verify.
 3. Push with `git push -u origin claude/<topic>` and give Dan the compare link to open the PR:
    `https://github.com/DanHemsley/DanPortfolioSite/compare/main...claude/<topic>?expand=1`
    (the `gh` CLI isn't installed).
@@ -31,6 +31,19 @@ Changes made in Figma come back via a `figma` → `main` PR.
 
 Before committing, check `git status -sb` shows the expected branch. A commit once landed on
 `figma` by mistake because the checkout had been switched underneath.
+
+## Site version
+
+The homepage logo (`.home__mark`) shows the site version as a native tooltip (`title="v0.1.0"`), so Dan can
+confirm Figma Make is serving the latest build. The version comes from `package.json` and is injected at build
+time as `__APP_VERSION__` (`vite.config.ts`).
+
+- **Every `claude/*` branch bumps it exactly once**, with `npm version <x.y.z> --no-git-tag-version` (updates
+  `package.json` and `package-lock.json`). Patch for fixes and content, minor for new pages or features.
+  Check `origin/main`'s version first so two branches don't claim the same number.
+- **Only `claude/*` branches change the version.** Figma must never edit it; if `figma` shows a different number
+  from `main`, it hasn't pulled the latest.
+- State the new version in the PR description and in the reply to Dan.
 
 ## Rules learned the hard way
 

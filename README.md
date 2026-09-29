@@ -58,6 +58,8 @@ House rules:
 - Don't delete files in Figma Make's workspace. Its template relies on some files the app doesn't import.
 - Protect `main` on GitHub (Settings → Branches → require a pull request before merging).
 
+**Site version:** hover the logo on the homepage to see it (e.g. `v0.1.0`). It comes from `package.json` and only `claude/*` branches bump it, so it shows at a glance whether Figma Make has the latest `main`.
+
 Full instructions for Claude are in `.claude/CLAUDE.md`.
 
 ## Publishing
