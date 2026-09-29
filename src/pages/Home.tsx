@@ -23,7 +23,8 @@ export function Home() {
     <main className="home">
       <div className="container home__top">
         <h1 className="home__headline">{copy.headline}</h1>
-        <img className="home__mark" src="/favicon.svg" width="137" height="137" alt="" />
+        {/* Native tooltip with the site version, so it's easy to confirm which build Figma is serving. */}
+        <img className="home__mark" src="/favicon.svg" width="137" height="137" alt="" title={`v${__APP_VERSION__}`} />
       </div>
 
       <nav className="container home__nav" aria-label="Main navigation">
