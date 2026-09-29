@@ -54,8 +54,8 @@ Don't use Vite `define` for this: Figma Make's dev server didn't apply it and th
   (`src/App.tsx`, `src/index.css`, `src/entries/`, `src/shared.tsx` may exist there). Deleting them broke publishing.
 - Figma Make serves its own `index.html` template (only title + lang filled from its site settings). Per-route
   metadata is created at runtime by `src/usePageMeta.ts`; keep it creating missing tags, not just updating them.
-- Don't rely on Vite `define` constants in code Figma runs. If one is unavoidable, guard it with
-  `typeof X !== 'undefined'` (see `__CV_PDF_AVAILABLE__` in `src/profile-links.ts`).
+- Don't rely on Vite `define` constants (or other build-time-only config) in code Figma runs: its dev server
+  didn't apply them. Prefer imports and committed files; if a define is unavoidable, guard it with `typeof X !== 'undefined'`.
 - Figma injects `@tailwindcss/vite`, which needs Vite ≥ 5.2. Don't downgrade Vite.
 - Node ≥ 18.18 required (Dan's Mac has Node 24).
 
@@ -74,11 +74,13 @@ Don't use Vite `define` for this: Figma Make's dev server didn't apply it and th
   blue `#9ECEFA`, coral `#FA9E9E`, violet `#A09EFA`, orange `#FACA9E`). Reuse them; don't add a new style.
 - Missing destinations render as disabled pills via `ActionLink` (`href: null`), never as broken or `#` links.
 
+## Canonical details
+
+- Email `danieljhemsley@gmail.com` and LinkedIn `linkedin.com/in/danhemsley1983` (both as on the CV PDF), set in
+  `src/profile-links.ts`. Keep the site and `public/dan-hemsley-cv.pdf` consistent.
+
 ## Open items
 
-- CV PDF: add `public/dan-hemsley-cv.pdf` (buttons enable automatically at build time).
-- Email: `PROFILE_LINKS.email` in `src/profile-links.ts` is `null`. The brief's `mailto@gmail.com` looked
-  like a placeholder, so it isn't published. Confirm with Dan.
 - Contact page: still a placeholder (`src/pages/PendingPage.tsx`).
 - "How I Work" nav item removed at Dan's request; the section remains at `/uprate#how-i-work`.
 
