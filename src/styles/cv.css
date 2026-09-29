@@ -118,6 +118,9 @@
   background: var(--white);
   box-shadow: 0 12px 32px -24px rgb(23 47 68 / 0.35);
 }
+.accent-border-blue.stat  { background: var(--blue-soft); }
+.accent-border-red.stat   { background: var(--red-soft); }
+.accent-border-purple.stat { background: var(--purple-soft); }
 .stat__value {
   font-family: var(--f-display);
   font-weight: 300;
