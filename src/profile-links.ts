@@ -5,14 +5,12 @@
  * disabled instead of broken links.
  */
 export const PROFILE_LINKS = {
-  linkedIn: 'https://linkedin.com/in/dan-hemsley-4ba363178',
+  // Canonical handle, matching the CV PDF.
+  linkedIn: 'https://www.linkedin.com/in/danhemsley1983',
 
-  email: 'danhemsley83@gmail.com' as string | null,
+  // Canonical address, matching the CV PDF.
+  email: 'danieljhemsley@gmail.com' as string | null,
 
-  // Drop the PDF at public/dan-hemsley-cv.pdf. The build checks for it
-  // (see vite.config.ts) and enables the download buttons automatically.
-  // typeof guard: environments that don't apply Vite's define (e.g. Figma Make's dev server) treat the PDF as missing instead of crashing.
-  cvPdf: typeof __CV_PDF_AVAILABLE__ !== 'undefined' && __CV_PDF_AVAILABLE__ ? '/dan-hemsley-cv.pdf' : null,
+  // Served from public/dan-hemsley-cv.pdf. Replace that file to update the CV.
+  cvPdf: '/dan-hemsley-cv.pdf' as string | null,
 };
-
-export const CV_PDF_PATH = 'public/dan-hemsley-cv.pdf';
