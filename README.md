@@ -17,8 +17,6 @@ Routes live in `src/links.ts`; each page sets its own title, description and can
 
 ## Before publishing
 
-- **CV PDF:** add `public/dan-hemsley-cv.pdf`. The build detects it and enables every "Download my CV" button (it warns while the file is missing).
-- **Email:** set `PROFILE_LINKS.email` in `src/profile-links.ts`. Until then the "Email me" buttons render as disabled.
 - **Contact page:** replace the placeholder in `src/pages/PendingPage.tsx`.
 
 ## Commands
