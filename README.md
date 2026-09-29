@@ -31,16 +31,40 @@ npm run build    # production build into dist/
 npm run preview  # serve dist/ locally
 ```
 
-Needs **Node 18.18 or newer** (Node 20 recommended). `sharp` is optional: only `npm run images` uses it, and it needs the original screenshots, which are kept locally.
+Needs **Node 18.18 or newer** (Node 20+ recommended). `sharp` is optional: only `npm run images` uses it, and it needs the original screenshots, which are kept locally.
 
-## Deploying to your domain
+## Workflow
 
-`dist/` is a plain static site. Any static host works, for example:
+| Branch | Who | Rule |
+| --- | --- | --- |
+| `main` | Dan | Source of truth: what's live. Changes only through pull requests. |
+| `figma` | Figma Make | Figma's working branch (it commits here itself). |
+| `claude/<topic>` | Claude | One short-lived branch per task, cut from `main`. |
 
-- **Netlify / Cloudflare Pages / Vercel:** connect the repo, build command `npm run build`, output directory `dist`, then add `danhemsley.com` as a custom domain and follow the host's DNS instructions.
-- **Manual:** upload the contents of `dist/` to any web server.
+```
+claude/<topic> ──PR──▶ main ──PR──▶ figma ──▶ Figma Make preview ──▶ Publish
+                        ▲                │
+                        └──────PR────────┘   (changes made in Figma)
+```
 
-The canonical URLs and social-preview image in each page's `index.html` point to `https://danhemsley.com/`. Change them if you use a different domain.
+1. **Claude's changes:** a `claude/<topic>` branch, tested, then a pull request into `main`.
+2. **Sync to Figma:** a pull request from `main` into `figma`; Figma Make pulls it and you check the preview.
+3. **Publish** from Figma Make only once `figma` contains everything in `main`.
+4. **Figma's changes:** a pull request from `figma` into `main`.
+
+House rules:
+
+- Package upgrades only on `claude/*` branches. Don't run `npm install`/`npm update` in Figma, and never `npm audit fix --force`.
+- Don't delete files in Figma Make's workspace. Its template relies on some files the app doesn't import.
+- Protect `main` on GitHub (Settings → Branches → require a pull request before merging).
+
+Full instructions for Claude are in `.claude/CLAUDE.md`.
+
+## Publishing
+
+Figma Make builds and publishes the site to danhemsley.com from its workspace (the `figma` branch), using its own `index.html` template. The page title, description, language, favicon and social image come from Figma's **site settings**; each route then sets its own title, description and canonical URL at runtime (`src/usePageMeta.ts`).
+
+`npm run build` still produces a standard static build in `dist/` for local checks or another host. Any host must serve `index.html` for every route.
 
 ## Where things live
 
