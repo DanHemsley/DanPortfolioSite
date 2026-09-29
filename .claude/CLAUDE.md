@@ -34,19 +34,28 @@ Before committing, check `git status -sb` shows the expected branch. A commit on
 
 ## Site version
 
-The homepage logo (`.home__mark`) shows the site version as a native tooltip (`title="v0.1.0"`), so Dan can
-confirm Figma Make is serving the latest build. `src/version.ts` imports it straight from `package.json`.
-Don't use Vite `define` for this: Figma Make's dev server didn't apply it and the page crashed with
-`__APP_VERSION__ is not defined`.
+The homepage logo (`.home__mark`) shows the site version as a native tooltip, so Dan can confirm Figma Make is
+serving the latest build. **The source of truth is the `SITE_VERSION` string in `src/version.ts`.**
 
-- **Every `claude/*` branch bumps it exactly once**, with `npm version <x.y.z> --no-git-tag-version` (updates
-  `package.json` and `package-lock.json`). Patch for fixes and content, minor for new pages or features.
-  Check `origin/main`'s version first so two branches don't claim the same number.
-- **Only `claude/*` branches change the version.** Figma must never edit it; if `figma` shows a different number
+Don't read it from `package.json`: Figma Make keeps its own `package.json` and ignores changes to it on pull, so
+the tooltip stayed on an old number while the rest of the code updated. Also don't use a Vite `define`:
+Figma's dev server didn't apply it (`__APP_VERSION__ is not defined`).
+
+- **Every `claude/*` branch bumps it exactly once:** edit `SITE_VERSION` in `src/version.ts`, and keep
+  `package.json` in step with `npm version <x.y.z> --no-git-tag-version` (tidiness only; the site doesn't use it).
+  Patch for fixes and content, minor for new pages or features. Check `origin/main`'s `src/version.ts` first so
+  two branches don't claim the same number.
+- **Only `claude/*` branches change the version.** Figma must never edit it; if Figma shows a different number
   from `main`, it hasn't pulled the latest.
 - State the new version in the PR description and in the reply to Dan.
 
 ## Rules learned the hard way
+
+- **Figma Make only syncs `src/`, `public/` and `assets/` from GitHub.** Root files (`package.json`,
+  `package-lock.json`, `vite.config.ts`, `index.html`, `tsconfig.json`) are *not* taken on pull; Figma keeps its
+  own. Anything the site needs at runtime must live under those three folders. A change to a root file only
+  affects local builds, and needs a separate, explicit request to Figma's agent if Figma must have it too.
+  Say so in the PR description whenever a branch touches root files.
 
 - **Dependencies change only on `claude/*` branches.** Figma and local machines both running npm caused
   lockfile churn and broken installs. Never run `npm audit fix --force`.
