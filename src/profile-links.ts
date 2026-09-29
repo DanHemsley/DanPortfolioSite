@@ -7,10 +7,7 @@
 export const PROFILE_LINKS = {
   linkedIn: 'https://linkedin.com/in/dan-hemsley-4ba363178',
 
-  // TODO(Dan): confirm the address. The brief supplied "mailto@gmail.com", which
-  // looks like a placeholder (and is someone else's Gmail address), so it's not
-  // published. Set e.g. 'you@example.com' here.
-  email: null as string | null,
+  email: 'danhemsley83@gmail.com' as string | null,
 
   // Drop the PDF at public/dan-hemsley-cv.pdf. The build checks for it
   // (see vite.config.ts) and enables the download buttons automatically.
