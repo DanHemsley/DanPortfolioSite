@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Defaults for the homepage and link previews; each route updates these (src/usePageMeta.ts). -->
     <title>Dan Hemsley — Senior Product Designer</title>
     <meta name="description" content="Bringing clarity to complex products, systems and user journeys." />
     <meta name="author" content="Dan Hemsley" />
@@ -19,11 +20,10 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preload" as="image" type="image/webp" href="/img/headshot-840.webp" imagesrcset="/img/headshot-480.webp 480w, /img/headshot-840.webp 840w" imagesizes="(min-width: 1024px) 420px, 40vw" />
   </head>
   <body>
     <div id="root"></div>
     <noscript>This site needs JavaScript to display.</noscript>
-    <script type="module" src="/src/entries/home.tsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,4 +1,6 @@
 import { SiteHeader } from '../components/SiteHeader';
+import { CONTACT, CV } from '../links';
+import { usePageMeta } from '../usePageMeta';
 
 interface Props {
   page: 'cv' | 'contact';
@@ -10,6 +12,7 @@ interface Props {
  * TODO(Dan): replace the placeholder block with the real CV / contact content.
  */
 export function PendingPage({ page, title }: Props) {
+  usePageMeta(`${title} — Dan Hemsley`, `${title} Dan Hemsley, Senior Product Designer.`, page === 'cv' ? CV : CONTACT);
   return (
     <>
       <a className="skip-link" href="#main">

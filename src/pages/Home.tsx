@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import { ArrowIcon } from '../components/icons';
 import { images } from '../images';
-import { CASE_STUDY, CONTACT, CV } from '../links';
+import { CASE_STUDY, CONTACT, CV, HOME } from '../links';
+import { usePageMeta } from '../usePageMeta';
 
 // Homepage copy, verbatim from the "Lander Welcome" design.
 const copy = {
@@ -15,6 +17,7 @@ const copy = {
 };
 
 export function Home() {
+  usePageMeta('Dan Hemsley — Senior Product Designer', 'Bringing clarity to complex products, systems and user journeys.', HOME);
   const photo = images.headshot;
   return (
     <main className="home">
@@ -26,16 +29,16 @@ export function Home() {
       <nav className="container home__nav" aria-label="Main navigation">
         <ul className="home__actions">
           <li>
-            <a className="button" href={CASE_STUDY}>
+            <Link className="button" to={CASE_STUDY}>
               {copy.primary}
               <ArrowIcon size={20} />
-            </a>
+            </Link>
           </li>
           {copy.links.map((l) => (
             <li key={l.label}>
-              <a className="nav__link" href={l.href}>
+              <Link className="nav__link" to={l.href}>
                 {l.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

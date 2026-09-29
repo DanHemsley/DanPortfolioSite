@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowIcon } from './icons';
 
 interface Props {
@@ -21,6 +22,16 @@ export function ActionLink({ href, children, variant = 'secondary', srSuffix, ex
         {children}
         <span className="sr-only"> (not available yet)</span>
       </span>
+    );
+  }
+  // Internal routes ("/uprate") navigate client-side; files like the PDF load normally.
+  if (href.startsWith('/') && !download) {
+    return (
+      <Link className={className} to={href}>
+        {children}
+        {srSuffix && <span className="sr-only"> {srSuffix}</span>}
+        {arrow && <ArrowIcon size={20} />}
+      </Link>
     );
   }
   return (

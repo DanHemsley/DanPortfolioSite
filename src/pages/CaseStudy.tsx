@@ -1,5 +1,7 @@
 import { LightboxProvider } from '../components/Lightbox';
 import { SiteHeader } from '../components/SiteHeader';
+import { CASE_STUDY } from '../links';
+import { usePageMeta } from '../usePageMeta';
 import { Hero } from '../sections/Hero';
 import { Connecting } from '../sections/Connecting';
 import { Teams } from '../sections/Teams';
@@ -15,6 +17,11 @@ import { HowIWork } from '../sections/HowIWork';
 import { Closing } from '../sections/Closing';
 
 export function CaseStudy() {
+  usePageMeta(
+    'UpRate case study — Dan Hemsley',
+    'How I redesigned UpRate’s connected back-office scheduling workflow around the Assignment model.',
+    CASE_STUDY,
+  );
   return (
     <LightboxProvider>
       <a className="skip-link" href="#main">

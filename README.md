@@ -1,17 +1,19 @@
-# UpRate case study — Dan Hemsley
+# Dan Hemsley — portfolio
 
-A static React + TypeScript (Vite) build of the UpRate case study.
+Dan Hemsley’s portfolio: homepage, UpRate case study, CV and contact. React + TypeScript (Vite), published through Figma Make from `main`.
 
 ## Pages
 
-| URL | Source |
-| --- | --- |
-| `/` | `index.html` → `src/pages/Home.tsx` (Lander Welcome) |
-| `/uprate/` | `uprate/index.html` → `src/pages/CaseStudy.tsx` |
-| `/cv/` | `cv/index.html` → `src/pages/CvPage.tsx` (copy in `src/cv-content.ts`) |
-| `/contact/` | `contact/index.html` → `src/pages/PendingPage.tsx` (placeholder) |
+A single-page app: one `index.html`, with React Router rendering each route (`src/main.tsx`). This is what Figma Make supports.
 
-Each page is its own HTML file, so every URL works on any static host with no rewrite rules. Shared URLs live in `src/links.ts`.
+| Route | Component |
+| --- | --- |
+| `/` | `src/pages/Home.tsx` (Lander Welcome) |
+| `/uprate` | `src/pages/CaseStudy.tsx` |
+| `/cv` | `src/pages/CvPage.tsx` (copy in `src/cv-content.ts`) |
+| `/contact` | `src/pages/PendingPage.tsx` (placeholder) |
+
+Routes live in `src/links.ts`; each page sets its own title, description and canonical URL with `usePageMeta`. Unknown URLs redirect to `/`. The host must serve `index.html` for every path (Figma Make and `vite preview` do this).
 
 ## Before publishing
 
@@ -29,7 +31,7 @@ npm run build    # production build into dist/
 npm run preview  # serve dist/ locally
 ```
 
-Needs Node 16+.
+Needs **Node 18.18 or newer** (Node 20 recommended). `sharp` is optional: only `npm run images` uses it, and it needs the original screenshots, which are kept locally.
 
 ## Deploying to your domain
 
