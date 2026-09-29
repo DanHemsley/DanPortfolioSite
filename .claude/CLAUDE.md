@@ -77,8 +77,6 @@ Don't use Vite `define` for this: Figma Make's dev server didn't apply it and th
 ## Open items
 
 - CV PDF: add `public/dan-hemsley-cv.pdf` (buttons enable automatically at build time).
-- Email: `PROFILE_LINKS.email` in `src/profile-links.ts` is `null`. The brief's `mailto@gmail.com` looked
-  like a placeholder, so it isn't published. Confirm with Dan.
 - Contact page: still a placeholder (`src/pages/PendingPage.tsx`).
 - "How I Work" nav item removed at Dan's request; the section remains at `/uprate#how-i-work`.
 
