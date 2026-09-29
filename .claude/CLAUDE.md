@@ -51,6 +51,12 @@ Figma's dev server didn't apply it (`__APP_VERSION__ is not defined`).
 
 ## Rules learned the hard way
 
+- **Figma Make only syncs `src/`, `public/` and `assets/` from GitHub.** Root files (`package.json`,
+  `package-lock.json`, `vite.config.ts`, `index.html`, `tsconfig.json`) are *not* taken on pull; Figma keeps its
+  own. Anything the site needs at runtime must live under those three folders. A change to a root file only
+  affects local builds, and needs a separate, explicit request to Figma's agent if Figma must have it too.
+  Say so in the PR description whenever a branch touches root files.
+
 - **Dependencies change only on `claude/*` branches.** Figma and local machines both running npm caused
   lockfile churn and broken installs. Never run `npm audit fix --force`.
 - **Never delete or rename files in Figma Make's workspace**, even ones the app doesn't import
