@@ -3,8 +3,9 @@ import { Dot } from '../components/icons';
 import { SiteFooter } from '../components/SiteFooter';
 import { SiteHeader } from '../components/SiteHeader';
 import { cvCapabilities, cvContact, cvEducation, cvExperience, cvHero, cvProfile, cvStats, type Position } from '../cv-content';
-import { CASE_STUDY, HOME } from '../links';
+import { CASE_STUDY, CV, HOME } from '../links';
 import { PROFILE_LINKS } from '../profile-links';
+import { usePageMeta } from '../usePageMeta';
 
 const email = PROFILE_LINKS.email ? `mailto:${PROFILE_LINKS.email}` : null;
 
@@ -60,6 +61,11 @@ function Role({ p }: { p: Position }) {
 }
 
 export function CvPage() {
+  usePageMeta(
+    'CV — Dan Hemsley, Senior Product Designer',
+    'Senior Product Designer with 12+ years of experience across B2B SaaS, UX, design systems and front-end development.',
+    CV,
+  );
   return (
     <>
       <a className="skip-link" href="#main">
