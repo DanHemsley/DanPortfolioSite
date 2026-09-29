@@ -1,0 +1,170 @@
+{
+  "headshot": {
+    "width": 1024,
+    "height": 1024,
+    "src": "/img/headshot-840.webp",
+    "srcSet": "/img/headshot-480.webp 480w, /img/headshot-840.webp 840w"
+  },
+  "labour-scheduler-week": {
+    "width": 2536,
+    "height": 1564,
+    "src": "/img/labour-scheduler-week-2048.webp",
+    "srcSet": "/img/labour-scheduler-week-640.webp 640w, /img/labour-scheduler-week-1280.webp 1280w, /img/labour-scheduler-week-2048.webp 2048w"
+  },
+  "labour-scheduler-overview": {
+    "width": 2536,
+    "height": 1564,
+    "src": "/img/labour-scheduler-overview-2048.webp",
+    "srcSet": "/img/labour-scheduler-overview-640.webp 640w, /img/labour-scheduler-overview-1280.webp 1280w, /img/labour-scheduler-overview-2048.webp 2048w"
+  },
+  "labour-scheduler-bulk-assign": {
+    "width": 2536,
+    "height": 1564,
+    "src": "/img/labour-scheduler-bulk-assign-2048.webp",
+    "srcSet": "/img/labour-scheduler-bulk-assign-640.webp 640w, /img/labour-scheduler-bulk-assign-1280.webp 1280w, /img/labour-scheduler-bulk-assign-2048.webp 2048w"
+  },
+  "labour-scheduler-create-assignment": {
+    "width": 2536,
+    "height": 1564,
+    "src": "/img/labour-scheduler-create-assignment-2048.webp",
+    "srcSet": "/img/labour-scheduler-create-assignment-640.webp 640w, /img/labour-scheduler-create-assignment-1280.webp 1280w, /img/labour-scheduler-create-assignment-2048.webp 2048w"
+  },
+  "labour-resources-panel": {
+    "width": 636,
+    "height": 1530,
+    "src": "/img/labour-resources-panel-636.webp",
+    "srcSet": "/img/labour-resources-panel-636.webp 636w"
+  },
+  "asset-scheduler": {
+    "width": 2536,
+    "height": 1564,
+    "src": "/img/asset-scheduler-2048.webp",
+    "srcSet": "/img/asset-scheduler-640.webp 640w, /img/asset-scheduler-1280.webp 1280w, /img/asset-scheduler-2048.webp 2048w"
+  },
+  "invoicing": {
+    "width": 2460,
+    "height": 1564,
+    "src": "/img/invoicing-2048.webp",
+    "srcSet": "/img/invoicing-640.webp 640w, /img/invoicing-1280.webp 1280w, /img/invoicing-2048.webp 2048w"
+  },
+  "sales-manager": {
+    "width": 2460,
+    "height": 1564,
+    "src": "/img/sales-manager-2048.webp",
+    "srcSet": "/img/sales-manager-640.webp 640w, /img/sales-manager-1280.webp 1280w, /img/sales-manager-2048.webp 2048w"
+  },
+  "contract-editor": {
+    "width": 2536,
+    "height": 1564,
+    "src": "/img/contract-editor-2048.webp",
+    "srcSet": "/img/contract-editor-640.webp 640w, /img/contract-editor-1280.webp 1280w, /img/contract-editor-2048.webp 2048w"
+  },
+  "timesheets": {
+    "width": 1100,
+    "height": 1564,
+    "src": "/img/timesheets-1100.webp",
+    "srcSet": "/img/timesheets-640.webp 640w, /img/timesheets-1100.webp 1100w"
+  },
+  "hero-gradient": {
+    "width": 1376,
+    "height": 768,
+    "src": "/img/hero-gradient-1376.webp",
+    "srcSet": "/img/hero-gradient-1376.webp 1376w"
+  },
+  "contract-scheduler": {
+    "width": 2156,
+    "height": 934,
+    "src": "/img/contract-scheduler-2048.webp",
+    "srcSet": "/img/contract-scheduler-640.webp 640w, /img/contract-scheduler-1280.webp 1280w, /img/contract-scheduler-2048.webp 2048w"
+  },
+  "assignment-detail": {
+    "width": 1060,
+    "height": 1026,
+    "src": "/img/assignment-detail-1060.webp",
+    "srcSet": "/img/assignment-detail-640.webp 640w, /img/assignment-detail-1060.webp 1060w"
+  },
+  "labour-resources": {
+    "width": 1060,
+    "height": 952,
+    "src": "/img/labour-resources-1060.webp",
+    "srcSet": "/img/labour-resources-640.webp 640w, /img/labour-resources-1060.webp 1060w"
+  },
+  "research-whiteboard": {
+    "width": 1154,
+    "height": 866,
+    "src": "/img/research-whiteboard-1154.webp",
+    "srcSet": "/img/research-whiteboard-640.webp 640w, /img/research-whiteboard-1154.webp 1154w"
+  },
+  "research-spreadsheet": {
+    "width": 1519,
+    "height": 658,
+    "src": "/img/research-spreadsheet-1519.webp",
+    "srcSet": "/img/research-spreadsheet-640.webp 640w, /img/research-spreadsheet-1280.webp 1280w, /img/research-spreadsheet-1519.webp 1519w"
+  },
+  "research-screen": {
+    "width": 1154,
+    "height": 866,
+    "src": "/img/research-screen-1154.webp",
+    "srcSet": "/img/research-screen-640.webp 640w, /img/research-screen-1154.webp 1154w"
+  },
+  "legacy-scheduler": {
+    "width": 2748,
+    "height": 644,
+    "src": "/img/legacy-scheduler-2048.webp",
+    "srcSet": "/img/legacy-scheduler-640.webp 640w, /img/legacy-scheduler-1280.webp 1280w, /img/legacy-scheduler-2048.webp 2048w"
+  },
+  "assignment-mockup": {
+    "width": 2960,
+    "height": 1370,
+    "src": "/img/assignment-mockup-2048.webp",
+    "srcSet": "/img/assignment-mockup-640.webp 640w, /img/assignment-mockup-1280.webp 1280w, /img/assignment-mockup-2048.webp 2048w"
+  },
+  "contract-scheduler-shipped": {
+    "width": 3434,
+    "height": 1902,
+    "src": "/img/contract-scheduler-shipped-2048.webp",
+    "srcSet": "/img/contract-scheduler-shipped-640.webp 640w, /img/contract-scheduler-shipped-1280.webp 1280w, /img/contract-scheduler-shipped-2048.webp 2048w"
+  },
+  "assignment-actions": {
+    "width": 1134,
+    "height": 344,
+    "src": "/img/assignment-actions-1134.webp",
+    "srcSet": "/img/assignment-actions-640.webp 640w, /img/assignment-actions-1134.webp 1134w"
+  },
+  "ds-overview": {
+    "width": 4096,
+    "height": 1780,
+    "src": "/img/ds-overview-2048.webp",
+    "srcSet": "/img/ds-overview-640.webp 640w, /img/ds-overview-1280.webp 1280w, /img/ds-overview-2048.webp 2048w"
+  },
+  "ds-colour": {
+    "width": 2819,
+    "height": 4096,
+    "src": "/img/ds-colour-2048.webp",
+    "srcSet": "/img/ds-colour-640.webp 640w, /img/ds-colour-1280.webp 1280w, /img/ds-colour-2048.webp 2048w"
+  },
+  "ds-themes": {
+    "width": 2880,
+    "height": 3090,
+    "src": "/img/ds-themes-2048.webp",
+    "srcSet": "/img/ds-themes-640.webp 640w, /img/ds-themes-1280.webp 1280w, /img/ds-themes-2048.webp 2048w"
+  },
+  "ds-modes": {
+    "width": 2880,
+    "height": 1560,
+    "src": "/img/ds-modes-2048.webp",
+    "srcSet": "/img/ds-modes-640.webp 640w, /img/ds-modes-1280.webp 1280w, /img/ds-modes-2048.webp 2048w"
+  },
+  "ds-spacing": {
+    "width": 1978,
+    "height": 1660,
+    "src": "/img/ds-spacing-1978.webp",
+    "srcSet": "/img/ds-spacing-640.webp 640w, /img/ds-spacing-1280.webp 1280w, /img/ds-spacing-1978.webp 1978w"
+  },
+  "ds-typography": {
+    "width": 2164,
+    "height": 2260,
+    "src": "/img/ds-typography-2048.webp",
+    "srcSet": "/img/ds-typography-640.webp 640w, /img/ds-typography-1280.webp 1280w, /img/ds-typography-2048.webp 2048w"
+  }
+}

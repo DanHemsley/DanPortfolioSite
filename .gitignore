@@ -1,0 +1,6 @@
+node_modules
+dist
+.DS_Store
+# Original captures include browser chrome with a personal email address.
+# Only the cropped derivatives in public/img are published.
+assets/source/screenshots

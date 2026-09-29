@@ -1,0 +1,148 @@
+/* Homepage ("Lander Welcome") */
+.home {
+  /* Panel height at 1728×1117 is 507px (29.3vw). */
+  --stage-h: clamp(300px, 29.3vw, 560px);
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-bottom: calc(var(--stage-h) * 0.62);
+  overflow: hidden;
+  background: #fdfbfa url('/img/hero-gradient-1376.webp') center top / cover no-repeat;
+}
+.home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(255 255 255 / 0.72);
+}
+.home > * {
+  position: relative;
+}
+/* The homepage runs wider than the case study: content starts at x=160 in the 1728px design. */
+.home .container {
+  max-width: calc(1408px + 2 * var(--gutter));
+}
+
+.home__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-top: clamp(40px, 16vh, 220px);
+}
+.home__headline {
+  max-width: 12.2em;
+  font-family: var(--f-display);
+  font-weight: 200;
+  font-size: clamp(34px, 5.7vw, 98px);
+  line-height: 1.48;
+  color: #4f5d6b;
+}
+.home__mark {
+  flex: none;
+  width: clamp(64px, 8vw, 137px);
+  height: auto;
+  margin-top: -0.5vw;
+  margin-right: -1.5vw;
+}
+
+.home__nav {
+  padding-top: clamp(32px, 6vh, 96px);
+  /* Keep the buttons above the panel/photo layer on short or narrow viewports. */
+  z-index: 2;
+}
+.home__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.home__actions .button,
+.home__actions .nav__link {
+  min-height: 52px;
+}
+.home__actions .button {
+  padding-inline: 24px 20px;
+}
+
+/* White card rotated 15°, anchored by its top-right corner. */
+.home__stage {
+  /* Decorative layer: never intercept clicks meant for the buttons. */
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--stage-h);
+}
+.home__panel {
+  position: absolute;
+  top: 0;
+  right: 8%;
+  width: 250vw;
+  height: 250vh;
+  background: var(--white);
+  border-top-right-radius: clamp(40px, 4vw, 72px);
+  transform: rotate(-15deg);
+  transform-origin: top right;
+}
+.home__person {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: clamp(8px, 1.5vw, 24px);
+  padding-right: clamp(0px, 2.5vw, 56px);
+}
+.home__id {
+  display: grid;
+  justify-items: end;
+  margin-bottom: clamp(56px, 7vw, 116px);
+  text-align: right;
+}
+.home__name {
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 44px);
+  line-height: 1.3;
+  color: #2e4a63;
+}
+.home__role {
+  font-family: var(--f-body);
+  font-weight: 300;
+  font-size: clamp(24px, 3.2vw, 56px);
+  line-height: 1.25;
+  color: var(--ink-800);
+}
+.home__photo {
+  flex: none;
+  /* The white studio backdrop drops out wherever the photo overhangs the panel. */
+  mix-blend-mode: multiply;
+  width: clamp(170px, 24vw, 420px);
+  height: auto;
+}
+
+@media (max-width: 899.98px) {
+  .home {
+    padding-bottom: 0;
+  }
+  .home__stage {
+    position: relative;
+    height: clamp(260px, 50vw, 380px);
+    margin-top: 40px;
+  }
+}
+@media (max-width: 640px) {
+  .home__panel {
+    right: 4%;
+  }
+  .home__person {
+    padding-right: 0;
+  }
+  .home__id {
+    margin-bottom: 32px;
+  }
+  .home__role {
+    max-width: 8.5em;
+  }
+}
