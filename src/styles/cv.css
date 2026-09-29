@@ -121,6 +121,10 @@
 .accent-border-blue.stat  { background: var(--blue-soft); }
 .accent-border-red.stat   { background: var(--red-soft); }
 .accent-border-purple.stat { background: var(--purple-soft); }
+/* The tints lower contrast: --muted text falls to ~3.7:1. --ink-700 keeps it above WCAG AA (4.5:1). */
+.stat[class*='accent-border-'] .stat__text {
+  color: var(--ink-700);
+}
 .stat__value {
   font-family: var(--f-display);
   font-weight: 300;

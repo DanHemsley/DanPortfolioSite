@@ -38,18 +38,18 @@ Needs **Node 18.18 or newer** (Node 20+ recommended). `sharp` is optional: only 
 | `main` | Dan | Source of truth: what's live. Protected: changes only through pull requests. |
 | `figma` | Dan | What Figma Make pulls from. Protected: only receives pull requests from `main`. |
 | `claude/<topic>` | Claude | One short-lived branch per task, cut from `main`. |
-| `figma/<topic>` | Figma Make | Only when you ask Figma to push something you changed in Figma. |
+| `make/<topic>` | Figma Make | Only when you ask Figma to push something you changed in Figma. |
 
 ```
 claude/<topic> ──PR──▶ main ──PR──▶ figma ──(pull)──▶ Figma Make ──▶ Publish
                         ▲
-figma/<topic> ──PR──────┘   (only when you ask Figma to push)
+make/<topic> ──PR──────┘   (only when you ask Figma to push)
 ```
 
 1. **Claude's changes:** a `claude/<topic>` branch, tested, then a pull request into `main`.
 2. **Sync to Figma:** a pull request from `main` into `figma`; then ask Figma Make to pull and check the preview.
 3. **Publish** from Figma Make once it has pulled the latest `figma` (check the version tooltip).
-4. **Keeping a change made in Figma:** ask Figma's agent to *push to a new branch `figma/<short-description>`*, then open a pull request from it into `main`. Check its file list first: Figma's own root files (`package.json`, lockfile, `.mcp.json`) usually shouldn't be merged.
+4. **Keeping a change made in Figma:** ask Figma's agent to *push to a new branch `make/<short-description>`, then reset its workspace to the `figma` branch*. Claude reviews it and brings it into `main` via a `claude/` branch (keeping Figma as the commit author). Don't publish from Figma while it has unmerged changes. (`figma/...` names don't work: git can't have both `figma` and `figma/...` branches.)
 
 `main` and `figma` are protected by a GitHub ruleset (Settings → Rules → Rulesets → *protected branches*): no direct pushes, no force pushes, no deletion. Figma's automatic commits can't reach them.
 

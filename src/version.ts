@@ -4,4 +4,4 @@
 // changes to it on pull, so a version stored there never updates in Figma. Source files do sync.
 //
 // Only claude/* branches bump this, once per branch (see .claude/CLAUDE.md). Keep package.json in step.
-export const SITE_VERSION = 'v0.1.5';
+export const SITE_VERSION = 'v0.1.6';
