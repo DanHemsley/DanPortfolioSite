@@ -27,7 +27,7 @@ export function CaseStudy() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <SheetPage wide>
+      <SheetPage>
         <main id="main" tabIndex={-1}>
           <Hero />
           <Connecting />

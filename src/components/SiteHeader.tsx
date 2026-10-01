@@ -6,8 +6,6 @@ import { CONTACT, CV, HOME } from '../links';
 interface Props {
   /** Marks the matching nav item with aria-current. */
   current?: 'cv' | 'contact';
-  /** Use the wide content measure (case study), so the logo aligns with the page content. */
-  wide?: boolean;
 }
 
 const ITEMS = [
@@ -34,7 +32,7 @@ function NavLinks({ current }: Pick<Props, 'current'>) {
  * scrolled out of view. The toolbar is portalled to <body> so the page sheet's clipping and stacking can't affect it,
  * and is `visibility: hidden` while out, so it's skipped by keyboard and screen readers until it appears.
  */
-export function SiteHeader({ current, wide }: Props) {
+export function SiteHeader({ current }: Props) {
   const ref = useRef<HTMLElement>(null);
   const [floating, setFloating] = useState(false);
 
@@ -57,7 +55,7 @@ export function SiteHeader({ current, wide }: Props) {
   return (
     <>
       <header ref={ref} className="site-header">
-        <div className={`container ${wide ? 'container--wide ' : ''}site-header__inner`}>
+        <div className="container container--wide site-header__inner">
           <Link to={HOME} className="site-header__mark" aria-label="Dan Hemsley, home">
             <img src="/favicon.svg" width="72" height="72" alt="" />
           </Link>
