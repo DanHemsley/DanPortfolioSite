@@ -4,7 +4,10 @@ import { SiteHeader } from './SiteHeader';
 
 interface Props {
   current?: 'cv' | 'contact';
-  /** Short pages (e.g. contact): header + main fill the viewport, with the main content centred vertically. */
+  /**
+   * Short pages (e.g. contact): header, main and footer together fill the viewport, with the main content centred
+   * vertically between header and footer. Taller content just flows.
+   */
   fill?: boolean;
   children: ReactNode;
 }
@@ -14,9 +17,9 @@ interface Props {
  * (Figma 'Case study page': Rectangle 854 / image 83) with the site header on top, and the site footer below.
  */
 export function SheetPage({ current, fill, children }: Props) {
-  return (
+  const page = (
     <>
-      <div className={fill ? 'sheet-page sheet-page--fill' : 'sheet-page'}>
+      <div className="sheet-page">
         <div className="sheet-page__sheet" aria-hidden="true" />
         <SiteHeader current={current} />
         {children}
@@ -24,4 +27,5 @@ export function SheetPage({ current, fill, children }: Props) {
       <SiteFooter />
     </>
   );
+  return fill ? <div className="page-fill">{page}</div> : page;
 }

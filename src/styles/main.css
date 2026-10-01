@@ -748,14 +748,19 @@ a.nav__link:hover {
   isolation: isolate;
   overflow: clip;
 }
-/* Short pages: header + main fill the viewport, main content centred vertically (footer sits below the fold). */
-.sheet-page--fill {
+/* Short pages (SheetPage `fill`): header, main and footer fill the viewport; main content centred between them. */
+.page-fill {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   min-height: 100svh;
 }
-.sheet-page--fill > main {
+.page-fill > .sheet-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.page-fill > .sheet-page > main {
   flex: 1;
   display: grid;
   align-content: center;
