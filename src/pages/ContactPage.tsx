@@ -20,7 +20,7 @@ export function ContactPage() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <SheetPage current="contact">
+      <SheetPage current="contact" fill>
         <main id="main" tabIndex={-1} className="contact-page">
           <div className="container contact">
             {/* 1–2. Introduction and primary action */}
