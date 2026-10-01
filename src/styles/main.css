@@ -540,14 +540,18 @@ main:focus {
   display: grid;
   gap: 24px;
 }
-.pair {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(12px, 2vw, 24px);
+/* Convergence collage: three overlapping windows, positioned as in the design. Percentages are of the
+   design's 865×726 arrangement, so it scales with the column. Later tiles sit on top. */
+.converge {
+  position: relative;
+  aspect-ratio: 865 / 726;
 }
-.square .figure__trigger {
-  aspect-ratio: 1;
+.converge__tile {
+  position: absolute;
 }
+.converge__tile--main { left: 0; top: 0; width: 100%; }
+.converge__tile--detail { left: 2.08%; top: 29.34%; width: 49.25%; }
+.converge__tile--resources { left: 45.78%; top: 47.38%; width: 49.13%; }
 
 /* ==========================================================================
    Header
@@ -880,18 +884,19 @@ a.nav__link:hover {
   align-content: start;
   gap: 10px;
 }
+/* Images keep their design framing; paired columns use the design widths so heights match. */
 .triad__media {
   display: grid;
-  gap: 10px;
-  grid-template-rows: 176px;
+  align-items: start;
+  gap: 8px;
   margin-bottom: 8px;
 }
-.triad__media .figure {
-  height: 100%;
-  min-height: 0;
+.triad__media--dependency {
+  grid-template-columns: minmax(0, 302fr) minmax(0, 165fr);
 }
-.triad__media--2 {
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+.triad__media--change {
+  grid-template-columns: minmax(0, 267fr) minmax(0, 199fr);
+  gap: 9px;
 }
 
 /* ==========================================================================
@@ -915,13 +920,12 @@ a.nav__link:hover {
   border-radius: 16px;
   background: var(--surface);
 }
+/* Widths from the design (329 / 248 / 375) so the three photos share a height. */
 .trio {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(8px, 1.4vw, 14px);
-}
-.trio__item .figure__trigger {
-  aspect-ratio: 4 / 3;
+  grid-template-columns: minmax(0, 329fr) minmax(0, 248fr) minmax(0, 375fr);
+  align-items: end;
+  gap: clamp(8px, 1.6vw, 27px);
 }
 
 /* ==========================================================================
@@ -992,17 +996,17 @@ a.nav__link:hover {
 }
 .outcome__media {
   position: relative;
-  padding-bottom: 28px;
 }
+/* Position and size as in the design: 336×102 at (611, 240) on the 1106×613 screenshot. */
 .outcome__overlay {
   position: absolute;
-  right: clamp(12px, 3vw, 32px);
-  bottom: 0;
-  width: min(45%, 320px);
+  left: 55.24%;
+  top: 39.15%;
+  width: 30.38%;
   z-index: 1;
 }
 .outcome__overlay .figure__trigger {
-  box-shadow: 0 16px 36px -16px rgb(23 47 68 / 0.5);
+  box-shadow: 0 0 10px #dde6ee;
 }
 .outcome__text {
   display: grid;
@@ -1065,7 +1069,7 @@ a.nav__link:hover {
   grid-template-rows: auto auto auto 1fr;
   justify-items: center;
   gap: 20px;
-  padding: clamp(24px, 3vw, 40px) clamp(20px, 3vw, 40px) 0;
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 3vw, 40px);
   border-radius: 20px;
   background: var(--surface-2);
   overflow: hidden;
@@ -1078,12 +1082,7 @@ a.nav__link:hover {
 .duo__image {
   align-self: end;
   width: 100%;
-  height: clamp(240px, 26vw, 340px);
   margin-top: 12px;
-}
-.duo__image .figure__trigger {
-  border-bottom: 0;
-  border-radius: 10px 10px 0 0;
 }
 
 /* ==========================================================================
@@ -1105,14 +1104,27 @@ a.nav__link:hover {
 }
 .ds-gallery__item .figure {
   display: grid;
-  grid-template-rows: 263px auto;
   justify-items: start;
 }
+/* Scrolling strip on smaller screens: a fixed height, each board at its natural width. */
+.ds-gallery {
+  grid-auto-columns: max-content;
+}
+.ds-gallery__item .figure__trigger img {
+  width: auto;
+  height: 220px;
+}
+/* Wide screens: columns in the design's widths (183/249/493/318/256), so every board shares a height. */
 @media (min-width: 1100px) {
   .ds-gallery {
     grid-auto-flow: row;
-    grid-template-columns: 179fr 245fr 489fr 314fr 252fr;
+    grid-template-columns: 183fr 249fr 493fr 318fr 256fr;
+    align-items: start;
     overflow: visible;
+  }
+  .ds-gallery__item .figure__trigger img {
+    width: 100%;
+    height: auto;
   }
 }
 .principles {
