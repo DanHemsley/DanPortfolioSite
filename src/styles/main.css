@@ -1274,8 +1274,34 @@ a.nav__link:hover {
 }
 
 /* ==========================================================================
-   Connected next
+   Connected next ("The Assignment connected what happened next."): Frame 1335 (259:25561)
    ========================================================================== */
+/* Copy block is 1000px wide in the design, so the heading breaks over two lines. */
+.connected-next .intro {
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto 32px;
+}
+.connected-next .intro .lead {
+  max-width: none;
+  color: var(--muted);
+}
+/* Flow tags (238:25406): toneb fill, Menbere Light, coloured dot, 24px arrows. */
+.flow--tags .pill {
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-weight: 300;
+  line-height: 1.6;
+}
+.flow--tags .flow__arrow {
+  margin-inline: 8px;
+  padding-top: 2px;
+}
+.connected-next .flow {
+  margin-bottom: clamp(32px, 3.5vw, 44px);
+}
 .duo {
   display: grid;
   gap: 24px;
@@ -1290,27 +1316,40 @@ a.nav__link:hover {
 @media (min-width: 900px) {
   .duo {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
   }
 }
 .duo__panel {
   display: grid;
-  grid-template-rows: auto auto auto 1fr;
+  gap: 30px;
+  padding: clamp(20px, 2.2vw, 30px);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+.duo__header {
+  display: grid;
   justify-items: center;
   gap: 20px;
-  padding: clamp(24px, 3vw, 40px) clamp(20px, 3vw, 40px);
-  border-radius: 20px;
-  background: var(--surface-2);
-  overflow: hidden;
   text-align: center;
 }
+/* Design colour #647789 is 4.3:1 on this fill; slate keeps the 17px light text at AA. */
 .duo__panel .lead {
-  max-width: 520px;
-  color: var(--ink-700);
+  color: var(--slate);
 }
 .duo__image {
-  align-self: end;
   width: 100%;
-  margin-top: 12px;
+}
+.figure.duo__image .figure__trigger {
+  box-shadow: none;
+}
+.connected-next__callout {
+  width: fit-content;
+  max-width: 100%;
+  margin: clamp(32px, 3.5vw, 44px) auto 0;
+  padding: 24px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-size: clamp(18px, 1.6vw, 22px);
 }
 
 /* ==========================================================================
