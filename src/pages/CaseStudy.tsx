@@ -1,5 +1,5 @@
 import { LightboxProvider } from '../components/Lightbox';
-import { SiteHeader } from '../components/SiteHeader';
+import { SheetPage } from '../components/SheetPage';
 import { CASE_STUDY } from '../links';
 import { usePageMeta } from '../usePageMeta';
 import { Hero } from '../sections/Hero';
@@ -27,26 +27,23 @@ export function CaseStudy() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      {/* The page sits on a slanted white sheet over a faint gradient, as in the design (Rectangle 854 / image 83). */}
-      <div className="cs-page">
-        <div className="cs-page__sheet" aria-hidden="true" />
-        <SiteHeader wide />
+      <SheetPage>
         <main id="main" tabIndex={-1}>
-        <Hero />
-        <Connecting />
-        <Teams />
-        <Handoffs />
-        <Convergence />
-        <WorkExisted />
-        <Decisions />
-        <Phases />
-        <Outcome />
-        <ConnectedNext />
-        <DesignSystem />
-        <HowIWork />
-        <Closing />
+          <Hero />
+          <Connecting />
+          <Teams />
+          <Handoffs />
+          <Convergence />
+          <WorkExisted />
+          <Decisions />
+          <Phases />
+          <Outcome />
+          <ConnectedNext />
+          <DesignSystem />
+          <HowIWork />
+          <Closing />
         </main>
-      </div>
+      </SheetPage>
     </LightboxProvider>
   );
 }

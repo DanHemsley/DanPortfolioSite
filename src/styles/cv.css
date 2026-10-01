@@ -37,14 +37,7 @@
 /* 1. Hero */
 .cv-hero {
   position: relative;
-  padding-block: clamp(48px, 7vw, 104px) clamp(40px, 6vw, 80px);
-  background: #fdfbfa url('/img/hero-gradient-1376.webp') center / cover no-repeat;
-}
-.cv-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.75));
+  padding-block: clamp(16px, 2.8vw, 48px) clamp(40px, 6vw, 80px);
 }
 .cv-hero .container {
   position: relative;

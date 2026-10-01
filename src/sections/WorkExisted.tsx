@@ -1,7 +1,12 @@
 import { workExisted as w } from '../content';
+import type { Accent } from '../content';
 import { SectionIntro } from '../components/SectionIntro';
 import { Figure } from '../components/Figure';
 import { Flow } from '../components/Flow';
+
+// Dot colours for the flow tags, as in the design (Existing 308:26077, Required 229:23174).
+const EXISTING_ACCENTS: Accent[] = ['purple', 'red'];
+const REQUIRED_ACCENTS: Accent[] = ['blue', 'blue', 'red', 'purple'];
 
 export function WorkExisted() {
   return (
@@ -13,7 +18,7 @@ export function WorkExisted() {
         <div className="split__media stack">
           <div className="workflow">
             <p className="workflow__label">{w.existing.label}</p>
-            <Flow steps={w.existing.steps} />
+            <Flow steps={w.existing.steps} accents={EXISTING_ACCENTS} />
           </div>
           <div className="panel">
             <div className="trio">
@@ -26,7 +31,7 @@ export function WorkExisted() {
           </div>
           <div className="workflow workflow--spaced">
             <p className="workflow__label">{w.required.label}</p>
-            <Flow steps={w.required.steps} />
+            <Flow steps={w.required.steps} accents={REQUIRED_ACCENTS} />
           </div>
           <div className="panel">
             <Figure pic={w.mockup} sizes="(min-width: 1024px) 1000px, 90vw" className="frame-ink frame-ink--thin" />
