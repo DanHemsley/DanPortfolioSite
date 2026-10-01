@@ -6,7 +6,7 @@ import { Flow } from '../components/Flow';
 export function WorkExisted() {
   return (
     <section className="section" aria-labelledby="existed-title">
-      <div className="container split">
+      <div className="container container--wide split">
         <div className="split__text">
           <SectionIntro id="existed-title" title={w.title} intro={w.intro} align="start" />
           <div className="workflow">

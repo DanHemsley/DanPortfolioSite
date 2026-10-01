@@ -5,7 +5,7 @@ import { ArrowIcon } from '../components/icons';
 export function Phases() {
   return (
     <section className="section" aria-labelledby="phases-title">
-      <div className="container split split--center">
+      <div className="container container--wide split split--center">
         <div className="split__text">
           <SectionIntro id="phases-title" title={phases.title} intro={phases.intro} align="start" size="xl" />
         </div>

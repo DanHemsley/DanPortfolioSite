@@ -6,7 +6,7 @@ import { Flow } from '../components/Flow';
 export function Convergence() {
   return (
     <section className="section" aria-labelledby="convergence-title">
-      <div className="container split">
+      <div className="container container--wide split">
         <div className="split__text">
           <SectionIntro id="convergence-title" title={convergence.title} intro={convergence.intro} align="start" size="xl" />
           <Flow steps={convergence.flow} />

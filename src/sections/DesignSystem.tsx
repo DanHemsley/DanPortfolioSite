@@ -5,7 +5,7 @@ import { Figure } from '../components/Figure';
 export function DesignSystem() {
   return (
     <section className="section" aria-labelledby="ds-title">
-      <div className="container">
+      <div className="container container--wide">
         <div className="split">
           <div className="split__text">
             <SectionIntro id="ds-title" title={d.title} intro={d.intro} align="start" />

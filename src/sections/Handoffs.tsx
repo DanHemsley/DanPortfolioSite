@@ -7,7 +7,7 @@ const s = handoffs.sticker;
 export function Handoffs() {
   return (
     <section className="section" aria-labelledby="handoffs-title">
-      <div className="container">
+      <div className="container container--wide">
         <SectionIntro id="handoffs-title" title={handoffs.title} intro={handoffs.intro} />
 
         <div className="annotated">

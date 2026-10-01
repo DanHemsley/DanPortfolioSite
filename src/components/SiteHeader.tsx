@@ -4,16 +4,18 @@ import { CONTACT, CV, HOME } from '../links';
 interface Props {
   /** Marks the matching nav item with aria-current. */
   current?: 'cv' | 'contact';
+  /** Use the wide content measure (case study), so the logo aligns with the page content. */
+  wide?: boolean;
 }
 
-export function SiteHeader({ current }: Props) {
+export function SiteHeader({ current, wide }: Props) {
   const items = [
     { key: 'cv', href: CV, label: 'CV' },
     { key: 'contact', href: CONTACT, label: 'Contact' },
   ];
   return (
     <header className="site-header">
-      <div className="container site-header__inner">
+      <div className={`container ${wide ? 'container--wide ' : ''}site-header__inner`}>
         <Link to={HOME} className="site-header__mark" aria-label="Dan Hemsley, home">
           <img src="/favicon.svg" width="51" height="51" alt="" />
         </Link>
