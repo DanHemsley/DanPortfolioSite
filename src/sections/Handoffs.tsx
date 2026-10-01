@@ -57,9 +57,9 @@ export function Handoffs() {
         <div className="triad">
           {handoffs.columns.map((c) => (
             <article key={c.label} className="triad__item">
-              <div className={`triad__media triad__media--${c.images.length}`}>
+              <div className={`triad__media triad__media--${c.label.toLowerCase()}`}>
                 {c.images.map((pic) => (
-                  <Figure key={pic.alt} pic={pic} sizes="(min-width: 900px) 30vw, 90vw" fit="cover" position="left top" />
+                  <Figure key={pic.alt} pic={pic} sizes="(min-width: 900px) 30vw, 90vw" />
                 ))}
               </div>
               <p className="eyebrow eyebrow--green">{c.label}</p>

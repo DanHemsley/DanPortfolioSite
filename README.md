@@ -20,13 +20,13 @@ Routes live in `src/links.ts`; each page sets its own title, description and can
 
 ```bash
 npm install
-npm run images   # regenerate public/img from assets/source (only needed when images change)
+npm run images   # regenerate public/img from assets/source (`npm run images -- <slug>` for one slot)
 npm run dev      # local dev server on http://localhost:8080 (also F5 in VS Code)
 npm run build    # production build into dist/
 npm run preview  # serve dist/ locally
 ```
 
-Needs **Node 18.18 or newer** (Node 20+ recommended). `sharp` is optional: only `npm run images` uses it, and it needs the original screenshots, which are kept locally.
+Needs **Node 18.18 or newer** (Node 20+ recommended). `sharp` is optional: only `npm run images` uses it.
 
 ## Workflow
 
@@ -74,8 +74,7 @@ Figma Make builds and publishes the site to danhemsley.com from its workspace (t
 | `src/sections/` | One component per page section, in page order |
 | `src/components/` | Header, responsive `Figure`, `Lightbox`, `Flow` chips, icons |
 | `src/styles/main.css` | Design tokens and all styles |
-| `scripts/build-images.mjs` | Image manifest: which source file and crop feeds each slot |
-| `assets/source/screenshots/` | Copies of the original captures (git-ignored; they include browser chrome) |
-| `assets/source/design/` | Artwork exported from the Figma design that isn't in the screenshot folder |
+| `scripts/build-images.mjs` | Image manifest: which Figma source and framing feeds each slot |
+| `assets/source/design/` | Source images from the Figma design (`hero/`, `case-study/` and older exports) |
 
-To swap a screenshot, change its entry in `scripts/build-images.mjs` and run `npm run images`.
+Images match the Figma design's framing exactly. To swap one, see **Images** in `.claude/CLAUDE.md`.

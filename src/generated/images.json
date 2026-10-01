@@ -41,41 +41,53 @@
     "src": "/img/headshot-840.webp",
     "srcSet": "/img/headshot-480.webp 480w, /img/headshot-840.webp 840w"
   },
-  "labour-scheduler-overview": {
-    "width": 2536,
-    "height": 1564,
-    "src": "/img/labour-scheduler-overview-2048.webp",
-    "srcSet": "/img/labour-scheduler-overview-640.webp 640w, /img/labour-scheduler-overview-1280.webp 1280w, /img/labour-scheduler-overview-2048.webp 2048w"
+  "cs-asset-scheduler": {
+    "width": 3212,
+    "height": 1763,
+    "src": "/img/cs-asset-scheduler-2048.webp",
+    "srcSet": "/img/cs-asset-scheduler-640.webp 640w, /img/cs-asset-scheduler-1280.webp 1280w, /img/cs-asset-scheduler-2048.webp 2048w"
   },
-  "labour-scheduler-bulk-assign": {
-    "width": 2536,
-    "height": 1564,
-    "src": "/img/labour-scheduler-bulk-assign-2048.webp",
-    "srcSet": "/img/labour-scheduler-bulk-assign-640.webp 640w, /img/labour-scheduler-bulk-assign-1280.webp 1280w, /img/labour-scheduler-bulk-assign-2048.webp 2048w"
+  "cs-scale": {
+    "width": 2833,
+    "height": 1060,
+    "src": "/img/cs-scale-2048.webp",
+    "srcSet": "/img/cs-scale-640.webp 640w, /img/cs-scale-1280.webp 1280w, /img/cs-scale-2048.webp 2048w"
   },
-  "labour-scheduler-create-assignment": {
-    "width": 2536,
-    "height": 1564,
-    "src": "/img/labour-scheduler-create-assignment-2048.webp",
-    "srcSet": "/img/labour-scheduler-create-assignment-640.webp 640w, /img/labour-scheduler-create-assignment-1280.webp 1280w, /img/labour-scheduler-create-assignment-2048.webp 2048w"
+  "cs-dependency-a": {
+    "width": 2240,
+    "height": 1320,
+    "src": "/img/cs-dependency-a-2048.webp",
+    "srcSet": "/img/cs-dependency-a-640.webp 640w, /img/cs-dependency-a-1280.webp 1280w, /img/cs-dependency-a-2048.webp 2048w"
   },
-  "asset-scheduler": {
-    "width": 2536,
-    "height": 1564,
-    "src": "/img/asset-scheduler-2048.webp",
-    "srcSet": "/img/asset-scheduler-640.webp 640w, /img/asset-scheduler-1280.webp 1280w, /img/asset-scheduler-2048.webp 2048w"
+  "cs-dependency-b": {
+    "width": 1492,
+    "height": 1597,
+    "src": "/img/cs-dependency-b-1492.webp",
+    "srcSet": "/img/cs-dependency-b-640.webp 640w, /img/cs-dependency-b-1280.webp 1280w, /img/cs-dependency-b-1492.webp 1492w"
   },
-  "invoicing": {
-    "width": 2460,
-    "height": 1564,
-    "src": "/img/invoicing-2048.webp",
-    "srcSet": "/img/invoicing-640.webp 640w, /img/invoicing-1280.webp 1280w, /img/invoicing-2048.webp 2048w"
+  "cs-change-timesheets": {
+    "width": 2183,
+    "height": 1391,
+    "src": "/img/cs-change-timesheets-2048.webp",
+    "srcSet": "/img/cs-change-timesheets-640.webp 640w, /img/cs-change-timesheets-1280.webp 1280w, /img/cs-change-timesheets-2048.webp 2048w"
   },
-  "timesheets": {
-    "width": 1100,
-    "height": 1564,
-    "src": "/img/timesheets-1100.webp",
-    "srcSet": "/img/timesheets-640.webp 640w, /img/timesheets-1100.webp 1100w"
+  "cs-change-invoicing": {
+    "width": 1616,
+    "height": 1381,
+    "src": "/img/cs-change-invoicing-1616.webp",
+    "srcSet": "/img/cs-change-invoicing-640.webp 640w, /img/cs-change-invoicing-1280.webp 1280w, /img/cs-change-invoicing-1616.webp 1616w"
+  },
+  "cs-panel-timesheets": {
+    "width": 2183,
+    "height": 1391,
+    "src": "/img/cs-panel-timesheets-2048.webp",
+    "srcSet": "/img/cs-panel-timesheets-640.webp 640w, /img/cs-panel-timesheets-1280.webp 1280w, /img/cs-panel-timesheets-2048.webp 2048w"
+  },
+  "cs-panel-invoicing": {
+    "width": 1232,
+    "height": 784,
+    "src": "/img/cs-panel-invoicing-1232.webp",
+    "srcSet": "/img/cs-panel-invoicing-640.webp 640w, /img/cs-panel-invoicing-1232.webp 1232w"
   },
   "hero-gradient": {
     "width": 1376,
@@ -108,26 +120,26 @@
     "srcSet": "/img/research-whiteboard-640.webp 640w, /img/research-whiteboard-1154.webp 1154w"
   },
   "research-spreadsheet": {
-    "width": 1519,
+    "width": 665,
     "height": 658,
-    "src": "/img/research-spreadsheet-1519.webp",
-    "srcSet": "/img/research-spreadsheet-640.webp 640w, /img/research-spreadsheet-1280.webp 1280w, /img/research-spreadsheet-1519.webp 1519w"
+    "src": "/img/research-spreadsheet-665.webp",
+    "srcSet": "/img/research-spreadsheet-640.webp 640w, /img/research-spreadsheet-665.webp 665w"
   },
   "research-screen": {
-    "width": 1154,
-    "height": 866,
-    "src": "/img/research-screen-1154.webp",
-    "srcSet": "/img/research-screen-640.webp 640w, /img/research-screen-1154.webp 1154w"
+    "width": 843,
+    "height": 551,
+    "src": "/img/research-screen-843.webp",
+    "srcSet": "/img/research-screen-640.webp 640w, /img/research-screen-843.webp 843w"
   },
   "legacy-scheduler": {
-    "width": 2748,
-    "height": 644,
+    "width": 2732,
+    "height": 627,
     "src": "/img/legacy-scheduler-2048.webp",
     "srcSet": "/img/legacy-scheduler-640.webp 640w, /img/legacy-scheduler-1280.webp 1280w, /img/legacy-scheduler-2048.webp 2048w"
   },
   "assignment-mockup": {
-    "width": 2960,
-    "height": 1370,
+    "width": 2798,
+    "height": 1211,
     "src": "/img/assignment-mockup-2048.webp",
     "srcSet": "/img/assignment-mockup-640.webp 640w, /img/assignment-mockup-1280.webp 1280w, /img/assignment-mockup-2048.webp 2048w"
   },

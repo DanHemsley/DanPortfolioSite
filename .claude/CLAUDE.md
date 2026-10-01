@@ -116,6 +116,21 @@ Figma's dev server didn't apply it (`__APP_VERSION__ is not defined`).
 
 ## Images
 
-`npm run images` rebuilds `public/img` from `assets/source` using `sharp` (optional dependency). The original
-screenshots are git-ignored because their browser chrome shows a third party's email address, so this only works
-on Dan's Mac. Never commit `assets/source/screenshots`.
+All case-study imagery comes from Dan's Figma file (`fcr0BYYBYazdQNN0eZAAKI`, frame **Case study page** `136:15002`),
+framed exactly as the design frames it. The July captures in ~/Downloads/UpRate Screenshots are no longer used.
+
+To change or add an image:
+1. Use the Figma connector: `get_design_context` on the section frame gives each image layer's box size, border and
+   fill position/size (%). Download the full-resolution source it links (URLs expire) into
+   `assets/source/design/{hero,case-study}/`. Check sources for browser chrome or private data before committing.
+2. Add/update the slot in `scripts/build-images.mjs` (`figma: { box, border, img | cover }`; `overlay` for composites).
+3. `npm run images -- <slug> [<slug>…]` rebuilds just those slots (sharp is an optional dependency). Delete any
+   `public/img` files the change orphans.
+4. Layout must not re-crop: images render at their natural ratio (`Figure` without `fit="cover"`), with column
+   widths in the design's proportions. Only the hero collage uses fixed boxes, which match the design's own boxes.
+
+Composite layers (e.g. the Invoicing panel, several captures plus white masks) are exported from Figma as one image
+with `download_assets` at 2x. Layers outside the 1728px design frame export blank; use their source + framing instead.
+
+`assets/source/screenshots` (git-ignored) holds the old July captures; never commit it, since their browser chrome shows
+a third party's email address.
