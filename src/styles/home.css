@@ -1,8 +1,15 @@
-/* Homepage ("Lander Welcome") */
+/* Homepage ("Lander Welcome", Figma 73:14815, a 1728×1117 frame).
+   Sizes scale with --u: 1% of the design width (17.28px), limited by height too (so 1117px tall frames match) and
+   capped at the design size. So the page keeps the design's balance whether the window is wide, narrow, short or tall. */
 .home {
-  /* Panel height at 1728×1117 is 507px (29.3vw). */
-  --stage-h: clamp(300px, 29.3vw, 560px);
+  --u: min(1vw, 1.547vh, 17.28px);
+  /* Panel height in the design is 507px. */
+  --stage-h: max(280px, calc(29.3 * var(--u)));
+  --hl: max(34px, calc(5.21 * var(--u))); /* headline 90px */
+  --mark: max(56px, calc(6.02 * var(--u))); /* mark 104px */
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   min-height: 100svh;
   padding-bottom: calc(var(--stage-h) * 0.62);
@@ -18,7 +25,7 @@
 .home > * {
   position: relative;
 }
-/* The homepage runs wider than the case study: content starts at x=160 in the 1728px design. */
+/* The homepage runs wider than the case study: content starts at x=157 in the 1728px design. */
 .home .container {
   max-width: calc(1408px + 2 * var(--gutter));
 }
@@ -28,26 +35,29 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 24px;
-  padding-top: clamp(40px, 16vh, 220px);
+  /* Headline top at y=176 of 1117. */
+  padding-top: clamp(32px, 15.8vh, 240px);
 }
 .home__headline {
-  max-width: 12.2em;
+  max-width: 12.4em;
   font-family: var(--f-display);
   font-weight: 200;
-  font-size: clamp(34px, 5.7vw, 98px);
-  line-height: 1.48;
-  color: #4f5d6b;
+  font-size: var(--hl);
+  line-height: 1.6;
+  color: rgb(23 47 68 / 0.7); /* design: #172f44 at 70% */
 }
+/* Mark (104px) centred on the headline's first line, as in the design, and overhanging the column slightly. */
 .home__mark {
   flex: none;
-  width: clamp(64px, 8vw, 137px);
+  width: var(--mark);
   height: auto;
-  margin-top: -0.5vw;
-  margin-right: -1.5vw;
+  margin-top: calc((1.6 * var(--hl) - var(--mark)) / 2 + 0.13 * var(--hl));
+  margin-right: calc(-1.74 * var(--u));
 }
 
 .home__nav {
-  padding-top: clamp(32px, 6vh, 96px);
+  /* 70px between headline and buttons in the design. */
+  padding-top: clamp(24px, 6.3vh, 96px);
   /* Keep the buttons above the panel/photo layer on short or narrow viewports. */
   z-index: 2;
 }
@@ -64,24 +74,26 @@
   padding-inline: 24px 20px;
 }
 
-/* White card rotated 15°, anchored by its top-right corner. */
+/* Stage: white card rotated 15°, anchored by its top-right corner, with the name and photo on it.
+   Held to the design's 1728px width, so on very wide screens the photo stays with the content. */
 .home__stage {
   /* Decorative layer: never intercept clicks meant for the buttons. */
   pointer-events: none;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: max(0px, (100% - 1728px) / 2);
+  right: max(0px, (100% - 1728px) / 2);
   bottom: 0;
   height: var(--stage-h);
 }
 .home__panel {
   position: absolute;
   top: 0;
-  right: 8%;
+  right: 7.2%;
   width: 250vw;
   height: 250vh;
   background: var(--white);
-  border-top-right-radius: clamp(40px, 4vw, 72px);
+  border-top-right-radius: max(32px, calc(3.9 * var(--u)));
+  box-shadow: 0 0 20px rgb(0 0 0 / 0.05);
   transform: rotate(-15deg);
   transform-origin: top right;
 }
@@ -91,53 +103,80 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  gap: clamp(8px, 1.5vw, 24px);
-  padding-right: clamp(0px, 2.5vw, 56px);
+  /* Photo's right edge 45px in from the frame. */
+  padding-right: calc(2.6 * var(--u));
 }
 .home__id {
   display: grid;
   justify-items: end;
-  margin-bottom: clamp(56px, 7vw, 116px);
+  /* Bottom 107px above the frame's foot; right edge tucks 14px into the photo's transparent margin. */
+  margin-bottom: max(32px, calc(6.2 * var(--u)));
+  margin-right: calc(-0.8 * var(--u));
   text-align: right;
+  color: var(--ink-700);
 }
 .home__name {
   font-family: var(--f-body);
-  font-weight: 700;
-  font-size: clamp(22px, 2.6vw, 44px);
-  line-height: 1.3;
-  color: #2e4a63;
+  font-weight: 600;
+  font-size: max(20px, calc(2.31 * var(--u))); /* 40px */
+  line-height: 1.6;
+  margin-bottom: -0.25em;
+  opacity: 0.9;
 }
 .home__role {
   font-family: var(--f-body);
-  font-weight: 300;
-  font-size: clamp(24px, 3.2vw, 56px);
-  line-height: 1.25;
-  color: var(--ink-800);
+  font-weight: 100;
+  font-size: max(24px, calc(2.89 * var(--u))); /* 50px */
+  line-height: 1.6;
 }
 .home__photo {
   flex: none;
   /* The white studio backdrop drops out wherever the photo overhangs the panel. */
   mix-blend-mode: multiply;
-  width: clamp(170px, 24vw, 420px);
+  width: max(170px, calc(24.7 * var(--u))); /* 427px */
   height: auto;
+  /* Runs 52px past the bottom of the frame, as in the design. */
+  margin-bottom: calc(-3 * var(--u));
 }
 
+/* Narrow screens: the stage follows the buttons and sits at the foot of the screen. */
 @media (max-width: 899.98px) {
   .home {
     padding-bottom: 0;
   }
   .home__stage {
     position: relative;
+    left: auto;
+    right: auto;
     height: clamp(260px, 50vw, 380px);
-    margin-top: 40px;
+    margin-top: auto;
+  }
+  .home__nav {
+    margin-bottom: 32px;
+  }
+  .home__person {
+    padding-inline: var(--gutter) 0;
+  }
+  .home__photo {
+    margin-bottom: 0;
+  }
+  .home__role {
+    font-weight: 200;
   }
 }
 @media (max-width: 640px) {
+  /* The desktop's airy 1.6 leading and top space are too much for a five-line headline on a phone. */
+  .home__top {
+    padding-top: clamp(32px, 10vh, 96px);
+  }
+  .home__headline {
+    line-height: 1.3;
+  }
+  .home__mark {
+    margin-top: calc((1.3 * var(--hl) - var(--mark)) / 2 + 0.13 * var(--hl));
+  }
   .home__panel {
     right: 4%;
-  }
-  .home__person {
-    padding-right: 0;
   }
   .home__id {
     margin-bottom: 32px;
