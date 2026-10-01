@@ -30,12 +30,13 @@ export function Hero() {
         </div>
 
         <div className="collage">
-          <Figure pic={collage.main} sizes="(min-width: 1024px) 660px, 90vw" fit="cover" position="left top" className="collage__tile collage__tile--main" priority />
-          <Figure pic={collage.contract} sizes="240px" fit="cover" position="left top" className="collage__tile collage__tile--contract" priority />
-          <Figure pic={collage.resourcePanel} sizes="160px" fit="cover" position="right top" className="collage__tile collage__tile--panel" />
-          <Figure pic={collage.scheduling} sizes="280px" fit="cover" position="left top" className="collage__tile collage__tile--scheduling" />
-          <Figure pic={collage.resourceDetails} sizes="260px" fit="cover" position="left top" className="collage__tile collage__tile--details" />
-          <Figure pic={collage.invoice} sizes="200px" fit="cover" position="left top" className="collage__tile collage__tile--invoice" />
+          {/* Stacking order follows the design (later = on top). */}
+          <Figure pic={collage.main} sizes="1311px" fit="cover" className="collage__tile collage__tile--main" priority />
+          <Figure pic={collage.contract} sizes="458px" fit="cover" className="collage__tile collage__tile--contract" priority />
+          <Figure pic={collage.resourcePanel} sizes="289px" fit="cover" className="collage__tile collage__tile--panel" priority />
+          <Figure pic={collage.resourceDetails} sizes="506px" fit="cover" className="collage__tile collage__tile--details" />
+          <Figure pic={collage.scheduling} sizes="533px" fit="cover" className="collage__tile collage__tile--scheduling" />
+          <Figure pic={collage.invoice} sizes="373px" fit="cover" className="collage__tile collage__tile--invoice" />
         </div>
       </div>
     </section>
