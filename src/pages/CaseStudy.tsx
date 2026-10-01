@@ -27,7 +27,7 @@ export function CaseStudy() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <SiteHeader />
+      <SiteHeader wide />
       <main id="main" tabIndex={-1}>
         <Hero />
         <Connecting />

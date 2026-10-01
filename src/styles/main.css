@@ -35,7 +35,10 @@
   --green-text: #2c8150;
 
   --gutter: clamp(16px, 5.3vw, 76px);
-  --max: 1288px;
+  /* Content measures from the design (1728px frame, 75px margins). */
+  --max: 1288px; /* standard: card grids, connecting */
+  --max-wide: 1578px; /* full design measure: two-column and image-led sections */
+  --max-panels: 1400px; /* paired panels */
   --section-y: clamp(72px, 9vw, 140px);
   --radius: 12px;
   --focus: #1e6fd9;
@@ -140,6 +143,9 @@ main:focus {
 }
 .container--narrow {
   max-width: calc(980px + 2 * var(--gutter));
+}
+.container--wide {
+  max-width: calc(var(--max-wide) + 2 * var(--gutter));
 }
 .section {
   padding-block: var(--section-y);
@@ -536,6 +542,13 @@ main:focus {
     align-items: center;
   }
 }
+/* From 1440px: the design's fixed 520px narrative column; media takes the rest. */
+@media (min-width: 1440px) {
+  .split {
+    grid-template-columns: minmax(320px, 520px) minmax(0, 1fr);
+    column-gap: 64px;
+  }
+}
 .stack {
   display: grid;
   gap: 24px;
@@ -544,6 +557,9 @@ main:focus {
    design's 865×726 arrangement, so it scales with the column. Later tiles sit on top. */
 .converge {
   position: relative;
+  width: 100%;
+  max-width: 865px; /* its size in the design */
+  justify-self: center;
   aspect-ratio: 865 / 726;
 }
 .converge__tile {
@@ -781,7 +797,8 @@ a.nav__link:hover {
 }
 @media (min-width: 1200px) {
   .annotated {
-    grid-template-columns: minmax(0, 1036fr) minmax(220px, 250fr);
+    /* Screenshot : annotations = 1040 : 506, as in the design. */
+    grid-template-columns: minmax(0, 1040fr) minmax(300px, 506fr);
     align-items: start;
   }
 }
@@ -1016,7 +1033,8 @@ a.nav__link:hover {
 }
 @media (min-width: 1440px) {
   .outcome {
-    grid-template-columns: minmax(0, 1.65fr) minmax(340px, 1fr);
+    /* Screenshot : narrative = 1106 : 422, as in the design; narrative never below 340px. */
+    grid-template-columns: minmax(0, 1106fr) minmax(340px, 422fr);
     align-items: center;
   }
 }
@@ -1058,6 +1076,13 @@ a.nav__link:hover {
 .duo {
   display: grid;
   gap: 24px;
+  max-width: var(--max-panels);
+  margin-inline: auto;
+}
+@media (min-width: 1440px) {
+  .duo {
+    gap: 48px;
+  }
 }
 @media (min-width: 900px) {
   .duo {

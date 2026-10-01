@@ -4,7 +4,7 @@ import { SectionIntro } from '../components/SectionIntro';
 export function HowIWork() {
   return (
     <section id="how-i-work" className="section" aria-labelledby="how-title">
-      <div className="container split">
+      <div className="container container--wide split">
         <div className="split__text">
           <SectionIntro id="how-title" title={h.title} intro={h.intro} align="start" tone="slate" />
           <p className="callout">{h.callout}</p>

@@ -11,7 +11,7 @@ import { Dot } from '../components/icons';
 export function Outcome() {
   return (
     <section className="section" aria-labelledby="outcome-title">
-      <div className="container">
+      <div className="container container--wide">
         <div className="outcome">
           <div className="outcome__media">
             <Figure pic={outcome.main} sizes="(min-width: 1440px) 60vw, 92vw" />

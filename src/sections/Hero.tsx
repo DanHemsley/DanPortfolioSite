@@ -7,7 +7,7 @@ const { collage } = hero;
 export function Hero() {
   return (
     <section id="case-study" className="hero" aria-labelledby="hero-title">
-      <div className="container hero__inner">
+      <div className="container container--wide hero__inner">
         <div className="hero__copy">
           <h1 id="hero-title" className="hero__title">
             {hero.title}
