@@ -308,9 +308,14 @@ main:focus {
   color: var(--ink-700);
   white-space: nowrap;
 }
-.pill--muted {
-  font-size: 13px;
-  padding: 6px 14px;
+/* Tag pill (Figma 'Tag List Item'): toneb fill, Menbere Light, coloured dot. Used by flows and phases. */
+.pill--tag {
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-weight: 300;
+  line-height: 1.6;
 }
 .chips {
   display: flex;
@@ -1285,15 +1290,6 @@ a.nav__link:hover {
 .connected-next .intro .lead {
   max-width: none;
   color: var(--muted);
-}
-/* Flow tags (238:25406): toneb fill, Menbere Light, coloured dot, 24px arrows. */
-.flow--tags .pill {
-  gap: 12px;
-  padding: 10px 16px;
-  border-radius: 10px;
-  background: var(--surface-2);
-  font-weight: 300;
-  line-height: 1.6;
 }
 .flow--tags .flow__arrow {
   margin-inline: 8px;

@@ -172,7 +172,7 @@ export const outcome = {
   overlay: { slug: 'assignment-actions', alt: 'Assignment detail overlay' } as Pic,
   results: [
     { label: 'PLANNING', title: 'Plan before allocating', text: 'Jobs could enter the scheduling workflow before a specific person or asset had been selected.', accent: 'blue' },
-    { label: 'ADAPTABILITY', title: 'Adapt without rebuilding', text: 'Resources could be replaced or removed while the Assignment, requirements and wider job context remained intact.', accent: 'purple' },
+    { label: 'ADAPTABILITY', title: 'Adapt without rebuilding', text: 'Resources could be replaced or removed while the Assignment, requirements and wider job context remained intact.', accent: 'red' },
     { label: 'FOUNDATION', title: 'Extend without starting again', text: 'Later scheduling capabilities were added to the same Assignment-led foundation established in the first release.', accent: 'purple' },
   ] as { label: string; title: string; text: string; accent: Accent }[],
 };

@@ -1,6 +1,6 @@
 import { phases } from '../content';
 import { SectionIntro } from '../components/SectionIntro';
-import { ArrowIcon } from '../components/icons';
+import { ArrowIcon, Dot } from '../components/icons';
 
 export function Phases() {
   return (
@@ -13,7 +13,10 @@ export function Phases() {
           {phases.items.map((p, i) => (
             <li key={p.label} className="phases__step">
               <div className={`phase accent-border-${p.accent}`}>
-                <span className="pill pill--muted">{p.label}</span>
+                <span className="pill pill--tag">
+                  <Dot accent={p.accent} />
+                  {p.label}
+                </span>
                 <p className="phase__text">{p.text}</p>
               </div>
               {i < phases.items.length - 1 && (
