@@ -1,6 +1,5 @@
 import { ActionLink } from '../components/ActionLink';
 import { Dot } from '../components/icons';
-import { SiteFooter } from '../components/SiteFooter';
 import { SheetPage } from '../components/SheetPage';
 import { cvCapabilities, cvContact, cvEducation, cvExperience, cvHero, cvProfile, cvStats, type Position } from '../cv-content';
 import { CASE_STUDY, CV, HOME } from '../links';
@@ -198,7 +197,6 @@ export function CvPage() {
           </section>
         </main>
       </SheetPage>
-      <SiteFooter />
     </>
   );
 }

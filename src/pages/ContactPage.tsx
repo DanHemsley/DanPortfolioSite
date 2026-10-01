@@ -1,6 +1,5 @@
 import { ActionLink } from '../components/ActionLink';
 import { Dot } from '../components/icons';
-import { SiteFooter } from '../components/SiteFooter';
 import { SheetPage } from '../components/SheetPage';
 import { contactContent as c } from '../contact-content';
 import { CASE_STUDY, CONTACT, CV } from '../links';
@@ -96,8 +95,6 @@ export function ContactPage() {
           </div>
         </main>
       </SheetPage>
-      {/* 5. Footer */}
-      <SiteFooter />
     </>
   );
 }
