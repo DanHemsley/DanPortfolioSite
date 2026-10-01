@@ -20,6 +20,7 @@
   --surface: #eef2f6;
   --surface-2: #f5f7f9;
   --line: #d9e1e8;
+  --ink-frame: #06131d; /* dark frame used on many design images */
   --white: #fff;
 
   --blue: #9ecefa;
@@ -187,8 +188,20 @@ main:focus {
 .h2--l {
   font-size: clamp(34px, 4.2vw, 50px);
 }
+.h2--m {
+  font-size: clamp(34px, 4.2vw, 50px);
+}
 .h2--xl {
   font-size: clamp(36px, 4.6vw, 57.6px);
+}
+/* From 1600px, grow towards the design's sizes at 1728px: 54px (m) and 66px (xl). */
+@media (min-width: 1600px) {
+  .h2--m {
+    font-size: clamp(50px, 3.125vw, 54px);
+  }
+  .h2--xl {
+    font-size: clamp(57.6px, 3.82vw, 66px);
+  }
 }
 .tone-ink {
   color: var(--ink-800);
@@ -223,6 +236,12 @@ main:focus {
   line-height: 1.55;
   color: var(--ink-900);
   text-wrap: pretty;
+}
+/* Intro paragraph that follows a card grid (Teams, Decisions), as in the design. */
+.section-outro {
+  max-width: 640px;
+  margin: clamp(28px, 4vw, 40px) auto 0;
+  text-align: center;
 }
 .small {
   font-family: var(--f-body);
@@ -456,6 +475,28 @@ main:focus {
 }
 .figure__caption {
   margin-top: 12px;
+}
+/* Frame variants matching the design. Default (.figure--framed) is the hero's blue-grey frame. */
+.figure.frame-ink .figure__trigger {
+  border: 2px solid var(--ink-frame);
+  border-radius: 8px;
+}
+.figure.frame-ink--thin .figure__trigger {
+  border-width: 1.5px;
+}
+.figure.frame-ink--lg .figure__trigger {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgb(36 56 74 / 0.07);
+}
+.figure.frame-thin .figure__trigger {
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 0 0 20px #dde6ee;
+}
+.figure.frame-photo .figure__trigger {
+  border: 2px solid var(--ink-frame);
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.2), 0 0 2px rgb(0 0 0 / 0.08), 0 2px 6px rgb(0 0 0 / 0.1);
 }
 
 /* Cards */
@@ -891,6 +932,11 @@ a.nav__link:hover {
   gap: 40px 28px;
   margin-top: clamp(48px, 6vw, 80px);
 }
+@media (min-width: 1600px) {
+  .triad {
+    column-gap: 76px;
+  }
+}
 @media (min-width: 900px) {
   .triad {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -923,6 +969,12 @@ a.nav__link:hover {
   display: grid;
   gap: 12px;
   margin-top: 24px;
+}
+.split__media .workflow {
+  margin-top: 0;
+}
+.split__media .workflow--spaced {
+  margin-top: clamp(16px, 2.5vw, 32px);
 }
 .workflow__label {
   font-family: var(--f-body);
@@ -1031,6 +1083,14 @@ a.nav__link:hover {
   gap: 8px;
   max-width: 720px;
 }
+/* Short rule between the intro and the callout, as in the design. */
+.rule {
+  width: 101px;
+  height: 1px;
+  margin: 0 0 32px;
+  border: 0;
+  background: var(--line);
+}
 @media (min-width: 1440px) {
   .outcome {
     /* Screenshot : narrative = 1106 : 422, as in the design; narrative never below 340px. */
@@ -1040,8 +1100,25 @@ a.nav__link:hover {
 }
 .results {
   display: grid;
-  gap: 32px 28px;
+  gap: 32px 50px;
   margin-top: clamp(48px, 6vw, 72px);
+}
+/* Short vertical rules between columns, as in the design (results, design-system principles). */
+@media (min-width: 900px) {
+  .results > li + li,
+  .principles > li + li {
+    position: relative;
+  }
+  .results > li + li::before,
+  .principles > li + li::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 0;
+    width: 1px;
+    height: 101px;
+    background: var(--line);
+  }
 }
 @media (min-width: 900px) {
   .results {
@@ -1054,16 +1131,17 @@ a.nav__link:hover {
   gap: 12px;
 }
 .result__label {
-  display: flex;
+  display: inline-flex;
+  justify-self: start;
   align-items: center;
-  gap: 10px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  background: var(--surface);
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--surface-2);
   font-family: var(--f-body);
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.04em;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--ink-700);
 }
 .result__title {
@@ -1127,6 +1205,19 @@ a.nav__link:hover {
 .ds-gallery__item {
   scroll-snap-align: start;
 }
+.ds-gallery .figure__caption {
+  width: 100%;
+}
+.ds-gallery .pill {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-weight: 300;
+}
 .ds-gallery__item .figure {
   display: grid;
   justify-items: start;
@@ -1154,7 +1245,7 @@ a.nav__link:hover {
 }
 .principles {
   display: grid;
-  gap: 28px;
+  gap: 28px 50px;
   margin-top: clamp(40px, 5vw, 56px);
 }
 .principles li {

@@ -20,7 +20,7 @@ export function ConnectedNext() {
               </p>
               <h3 className="h3">{p.title}</h3>
               <p className="lead">{p.text}</p>
-              <Figure pic={p.image} sizes="(min-width: 900px) 620px, 88vw" className="duo__image" />
+              <Figure pic={p.image} sizes="(min-width: 900px) 620px, 88vw" className="duo__image frame-thin" />
             </article>
           ))}
         </div>

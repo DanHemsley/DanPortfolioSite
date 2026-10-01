@@ -5,7 +5,7 @@ export function Decisions() {
   return (
     <section className="section" aria-labelledby="decisions-title">
       <div className="container">
-        <SectionIntro id="decisions-title" title={decisions.title} intro={decisions.intro} tone="slate" />
+        <SectionIntro id="decisions-title" title={decisions.title} tone="slate" />
         <ol className="card-grid card-grid--4">
           {decisions.items.map((d, i) => (
             <li key={d.title} className={`card card--center accent-border-${d.accent}`}>
@@ -17,6 +17,7 @@ export function Decisions() {
             </li>
           ))}
         </ol>
+        <p className="lead section-outro">{decisions.intro}</p>
       </div>
     </section>
   );

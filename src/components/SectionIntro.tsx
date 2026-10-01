@@ -6,7 +6,7 @@ interface Props {
   intro?: ReactNode;
   align?: 'center' | 'start';
   tone?: 'ink' | 'slate';
-  size?: 'l' | 'xl';
+  size?: 'l' | 'm' | 'xl';
 }
 
 /** Section heading + lead paragraph. `id` is used for aria-labelledby on the section. */

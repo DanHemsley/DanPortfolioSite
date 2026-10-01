@@ -14,11 +14,12 @@ export function Outcome() {
       <div className="container container--wide">
         <div className="outcome">
           <div className="outcome__media">
-            <Figure pic={outcome.main} sizes="(min-width: 1440px) 60vw, 92vw" />
-            <Figure pic={outcome.overlay} sizes="(min-width: 1440px) 320px, 45vw" className="outcome__overlay" />
+            <Figure pic={outcome.main} sizes="(min-width: 1440px) 1100px, 92vw" framed={false} />
+            <Figure pic={outcome.overlay} sizes="(min-width: 1440px) 340px, 45vw" framed={false} className="outcome__overlay" />
           </div>
           <div className="outcome__text">
-            <SectionIntro id="outcome-title" title={outcome.title} intro={outcome.intro} align="start" />
+            <SectionIntro id="outcome-title" title={outcome.title} intro={outcome.intro} align="start" size="m" />
+            <hr className="rule" />
             <p className="callout">{outcome.callout}</p>
           </div>
         </div>
