@@ -8,10 +8,10 @@ export function Handoffs() {
   return (
     <section className="section" aria-labelledby="handoffs-title">
       <div className="container container--wide">
-        <SectionIntro id="handoffs-title" title={handoffs.title} intro={handoffs.intro} />
+        <SectionIntro id="handoffs-title" title={handoffs.title} intro={handoffs.intro} size="m" />
 
         <div className="annotated">
-          <Figure pic={handoffs.scheduler} sizes="(min-width: 1100px) 1040px, 92vw" className="annotated__image" />
+          <Figure pic={handoffs.scheduler} sizes="(min-width: 1100px) 1040px, 92vw" className="annotated__image frame-ink frame-ink--lg" />
           <div className="annotated__side">
             <ol className="annotations">
               {handoffs.annotations.map((a, i) => (
@@ -59,7 +59,7 @@ export function Handoffs() {
             <article key={c.label} className="triad__item">
               <div className={`triad__media triad__media--${c.label.toLowerCase()}`}>
                 {c.images.map((pic) => (
-                  <Figure key={pic.alt} pic={pic} sizes="(min-width: 900px) 30vw, 90vw" />
+                  <Figure key={pic.alt} pic={pic} sizes="(min-width: 900px) 30vw, 90vw" className="frame-thin" />
                 ))}
               </div>
               <p className="eyebrow eyebrow--green">{c.label}</p>

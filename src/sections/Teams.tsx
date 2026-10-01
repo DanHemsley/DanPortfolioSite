@@ -6,7 +6,7 @@ export function Teams() {
   return (
     <section className="section" aria-labelledby="teams-title">
       <div className="container">
-        <SectionIntro id="teams-title" title={teams.title} intro={teams.intro} tone="slate" />
+        <SectionIntro id="teams-title" title={teams.title} tone="slate" />
         <ul className="card-grid card-grid--4">
           {teams.roles.map((r) => (
             <li key={r.title} className={`card card--center accent-border-${r.accent}`}>
@@ -17,6 +17,7 @@ export function Teams() {
             </li>
           ))}
         </ul>
+        <p className="lead section-outro">{teams.intro}</p>
       </div>
     </section>
   );
