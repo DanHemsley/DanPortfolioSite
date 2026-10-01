@@ -540,13 +540,18 @@ main:focus {
   display: grid;
   gap: 24px;
 }
-/* Two images side by side at their natural ratios (widths from the design: 426 / 425). */
-.pair {
-  display: grid;
-  grid-template-columns: minmax(0, 426fr) minmax(0, 425fr);
-  align-items: start;
-  gap: clamp(12px, 2vw, 24px);
+/* Convergence collage: three overlapping windows, positioned as in the design. Percentages are of the
+   design's 865×726 arrangement, so it scales with the column. Later tiles sit on top. */
+.converge {
+  position: relative;
+  aspect-ratio: 865 / 726;
 }
+.converge__tile {
+  position: absolute;
+}
+.converge__tile--main { left: 0; top: 0; width: 100%; }
+.converge__tile--detail { left: 2.08%; top: 29.34%; width: 49.25%; }
+.converge__tile--resources { left: 45.78%; top: 47.38%; width: 49.13%; }
 
 /* ==========================================================================
    Header

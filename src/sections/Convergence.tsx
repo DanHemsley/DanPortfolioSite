@@ -11,13 +11,11 @@ export function Convergence() {
           <SectionIntro id="convergence-title" title={convergence.title} intro={convergence.intro} align="start" size="xl" />
           <Flow steps={convergence.flow} />
         </div>
-        <div className="split__media stack">
-          <Figure pic={convergence.main} sizes="(min-width: 1024px) 720px, 92vw" />
-          <div className="pair">
-            {convergence.details.map((pic) => (
-              <Figure key={pic.slug} pic={pic} sizes="(min-width: 1024px) 350px, 45vw" />
-            ))}
-          </div>
+        {/* Layered as in the design (Figma 'Transition content', 101:14889). The images carry their own border. */}
+        <div className="split__media converge">
+          <Figure pic={convergence.main} sizes="(min-width: 1024px) 760px, 92vw" framed={false} className="converge__tile converge__tile--main" />
+          <Figure pic={convergence.details[0]} sizes="(min-width: 1024px) 380px, 46vw" framed={false} className="converge__tile converge__tile--detail" />
+          <Figure pic={convergence.details[1]} sizes="(min-width: 1024px) 380px, 46vw" framed={false} className="converge__tile converge__tile--resources" />
         </div>
       </div>
     </section>
