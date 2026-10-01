@@ -1,7 +1,11 @@
 import { convergence } from '../content';
+import type { Accent } from '../content';
 import { SectionIntro } from '../components/SectionIntro';
 import { Figure } from '../components/Figure';
 import { Flow } from '../components/Flow';
+
+// Dot colours for the flow tags, as in the design (Frame 1330, 227:22996).
+const FLOW_ACCENTS: Accent[] = ['blue', 'red', 'purple'];
 
 export function Convergence() {
   return (
@@ -9,7 +13,7 @@ export function Convergence() {
       <div className="container container--wide split">
         <div className="split__text">
           <SectionIntro id="convergence-title" title={convergence.title} intro={convergence.intro} align="start" size="xl" />
-          <Flow steps={convergence.flow} />
+          <Flow steps={convergence.flow} accents={FLOW_ACCENTS} />
         </div>
         {/* Layered as in the design (Figma 'Transition content', 101:14889). The images carry their own border. */}
         <div className="split__media converge">

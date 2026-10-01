@@ -20,7 +20,7 @@ export function Flow({
     <ol className={`flow ${accents ? 'flow--tags' : ''} ${className}`} aria-label={label ?? steps.join(', then ')}>
       {steps.map((step, i) => (
         <li key={step + i} className="flow__step">
-          <span className="pill">
+          <span className={accents ? 'pill pill--tag' : 'pill'}>
             {accents?.[i] && <Dot accent={accents[i]} />}
             {step}
           </span>
