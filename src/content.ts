@@ -22,12 +22,12 @@ export const hero = {
     "I led design across UpRate's connected back-office workflows, working closely with customers, the founder and engineering to simplify complex operational processes and create a more coherent product experience.",
   cta: 'Explore the case study',
   collage: {
-    main: { slug: 'labour-scheduler-week', alt: 'UpRate dashboard overview' },
-    contract: { slug: 'sales-manager', alt: 'UpRate contract view' },
-    resourcePanel: { slug: 'invoicing', alt: 'UpRate resource panel' },
-    scheduling: { slug: 'timesheets', alt: 'UpRate scheduling view' },
-    resourceDetails: { slug: 'contract-editor', alt: 'UpRate resource details' },
-    invoice: { slug: 'labour-resources-panel', alt: 'UpRate invoice view' },
+    main: { slug: 'hero-labour-scheduler', alt: 'UpRate dashboard overview' },
+    contract: { slug: 'hero-sales-manager', alt: 'UpRate contract view' },
+    resourcePanel: { slug: 'hero-invoicing', alt: 'UpRate resource panel' },
+    scheduling: { slug: 'hero-timesheets', alt: 'UpRate scheduling view' },
+    resourceDetails: { slug: 'hero-contract-editor', alt: 'UpRate resource details' },
+    invoice: { slug: 'hero-labour-resources', alt: 'UpRate invoice view' },
   } satisfies Record<string, Pic>,
 };
 

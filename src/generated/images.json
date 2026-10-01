@@ -1,15 +1,45 @@
 {
+  "hero-labour-scheduler": {
+    "width": 3754,
+    "height": 2011,
+    "src": "/img/hero-labour-scheduler-2048.webp",
+    "srcSet": "/img/hero-labour-scheduler-640.webp 640w, /img/hero-labour-scheduler-1280.webp 1280w, /img/hero-labour-scheduler-2048.webp 2048w"
+  },
+  "hero-sales-manager": {
+    "width": 2130,
+    "height": 2440,
+    "src": "/img/hero-sales-manager-2048.webp",
+    "srcSet": "/img/hero-sales-manager-640.webp 640w, /img/hero-sales-manager-1280.webp 1280w, /img/hero-sales-manager-2048.webp 2048w"
+  },
+  "hero-invoicing": {
+    "width": 1182,
+    "height": 2155,
+    "src": "/img/hero-invoicing-1182.webp",
+    "srcSet": "/img/hero-invoicing-640.webp 640w, /img/hero-invoicing-1182.webp 1182w"
+  },
+  "hero-contract-editor": {
+    "width": 2132,
+    "height": 2025,
+    "src": "/img/hero-contract-editor-2048.webp",
+    "srcSet": "/img/hero-contract-editor-640.webp 640w, /img/hero-contract-editor-1280.webp 1280w, /img/hero-contract-editor-2048.webp 2048w"
+  },
+  "hero-timesheets": {
+    "width": 2186,
+    "height": 1360,
+    "src": "/img/hero-timesheets-2048.webp",
+    "srcSet": "/img/hero-timesheets-640.webp 640w, /img/hero-timesheets-1280.webp 1280w, /img/hero-timesheets-2048.webp 2048w"
+  },
+  "hero-labour-resources": {
+    "width": 1565,
+    "height": 2331,
+    "src": "/img/hero-labour-resources-1565.webp",
+    "srcSet": "/img/hero-labour-resources-640.webp 640w, /img/hero-labour-resources-1280.webp 1280w, /img/hero-labour-resources-1565.webp 1565w"
+  },
   "headshot": {
     "width": 1024,
     "height": 1024,
     "src": "/img/headshot-840.webp",
     "srcSet": "/img/headshot-480.webp 480w, /img/headshot-840.webp 840w"
-  },
-  "labour-scheduler-week": {
-    "width": 2536,
-    "height": 1564,
-    "src": "/img/labour-scheduler-week-2048.webp",
-    "srcSet": "/img/labour-scheduler-week-640.webp 640w, /img/labour-scheduler-week-1280.webp 1280w, /img/labour-scheduler-week-2048.webp 2048w"
   },
   "labour-scheduler-overview": {
     "width": 2536,
@@ -29,12 +59,6 @@
     "src": "/img/labour-scheduler-create-assignment-2048.webp",
     "srcSet": "/img/labour-scheduler-create-assignment-640.webp 640w, /img/labour-scheduler-create-assignment-1280.webp 1280w, /img/labour-scheduler-create-assignment-2048.webp 2048w"
   },
-  "labour-resources-panel": {
-    "width": 636,
-    "height": 1530,
-    "src": "/img/labour-resources-panel-636.webp",
-    "srcSet": "/img/labour-resources-panel-636.webp 636w"
-  },
   "asset-scheduler": {
     "width": 2536,
     "height": 1564,
@@ -46,18 +70,6 @@
     "height": 1564,
     "src": "/img/invoicing-2048.webp",
     "srcSet": "/img/invoicing-640.webp 640w, /img/invoicing-1280.webp 1280w, /img/invoicing-2048.webp 2048w"
-  },
-  "sales-manager": {
-    "width": 2460,
-    "height": 1564,
-    "src": "/img/sales-manager-2048.webp",
-    "srcSet": "/img/sales-manager-640.webp 640w, /img/sales-manager-1280.webp 1280w, /img/sales-manager-2048.webp 2048w"
-  },
-  "contract-editor": {
-    "width": 2536,
-    "height": 1564,
-    "src": "/img/contract-editor-2048.webp",
-    "srcSet": "/img/contract-editor-640.webp 640w, /img/contract-editor-1280.webp 1280w, /img/contract-editor-2048.webp 2048w"
   },
   "timesheets": {
     "width": 1100,
