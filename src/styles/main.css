@@ -58,7 +58,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 24px;
+  scroll-padding-top: 96px; /* clears the floating toolbar */
 }
 html.is-locked {
   overflow: hidden;
@@ -635,8 +635,8 @@ main:focus {
   border-radius: 50%;
 }
 .site-header__mark img {
-  width: 51px;
-  height: 51px;
+  width: clamp(56px, 4.2vw, 72px);
+  height: auto;
 }
 .nav {
   display: flex;
@@ -673,25 +673,82 @@ a.nav__link:hover {
     font-size: 15px;
   }
   .site-header__mark img {
-    width: 42px;
-    height: 42px;
+    width: 48px;
+  }
+}
+
+/* Floating toolbar: slides down once the page header has scrolled out of view (SiteHeader). */
+.float-nav {
+  position: fixed;
+  z-index: 50;
+  top: 16px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: min(calc(100% - 32px), 560px);
+  padding: 8px 8px 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgb(36 56 74 / 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, calc(-100% - 24px));
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.3s ease,
+    visibility 0s linear 0.4s;
+}
+.float-nav.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.3s ease,
+    visibility 0s;
+}
+.float-nav__mark {
+  display: block;
+  border-radius: 50%;
+}
+.float-nav__mark img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+.float-nav .nav {
+  gap: 8px;
+}
+.float-nav .nav__link {
+  padding: 5px 18px;
+  font-size: 16px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-nav,
+  .float-nav.is-visible {
+    transform: translate(-50%, 0);
   }
 }
 
 /* ==========================================================================
    Hero
    ========================================================================== */
-/* Case-study page backdrop (Figma 'Case study page'):
+/* Page backdrop for the case study, CV and contact pages (SheetPage; Figma 'Case study page'):
    - image 83: the gradient artwork, blurred 50px at 20% opacity, across the top of the page;
    - Rectangle 854: a white sheet with a rounded top-left corner, rotated 7.2° so its top edge slants
      down to the right. Its corner sits at (42, 50) in the 1728px design; values scale down below that. */
 /* Clipped on both axes: the rotated sheet's far corner otherwise hangs ~3000px below the page as empty scroll. */
-.cs-page {
+.sheet-page {
   position: relative;
   isolation: isolate;
   overflow: clip;
 }
-.cs-page::before {
+.sheet-page::before {
   content: '';
   position: absolute;
   z-index: -2;
@@ -704,7 +761,7 @@ a.nav__link:hover {
   filter: blur(50px);
   pointer-events: none;
 }
-.cs-page__sheet {
+.sheet-page__sheet {
   position: absolute;
   z-index: -1;
   left: clamp(12px, 2.42vw, 42px);
@@ -719,10 +776,10 @@ a.nav__link:hover {
   pointer-events: none;
 }
 /* On the sheet the header has no bar of its own; spacing as in the design (logo at y=125, content at y=275). */
-.cs-page .site-header {
+.sheet-page .site-header {
   background: transparent;
 }
-.cs-page .site-header__inner {
+.sheet-page .site-header__inner {
   padding-block: clamp(28px, 7.2vw, 124px) clamp(12px, 2.9vw, 50px);
 }
 

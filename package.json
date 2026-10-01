@@ -1,7 +1,7 @@
 {
   "name": "uprate-case-study",
   "private": true,
-  "version": "0.2.10",
+  "version": "0.3.0",
   "type": "module",
   "scripts": {
     "images": "node scripts/build-images.mjs",
