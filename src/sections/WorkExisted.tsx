@@ -22,7 +22,7 @@ export function WorkExisted() {
           <div className="panel">
             <div className="trio">
               {w.research.map((pic) => (
-                <Figure key={pic.slug} pic={pic} sizes="(min-width: 1024px) 220px, 30vw" fit="cover" className="trio__item" />
+                <Figure key={pic.slug} pic={pic} sizes="(min-width: 1024px) 380px, 30vw" />
               ))}
             </div>
             <Figure pic={w.legacy} sizes="(min-width: 1024px) 680px, 90vw" />

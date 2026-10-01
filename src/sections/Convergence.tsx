@@ -15,7 +15,7 @@ export function Convergence() {
           <Figure pic={convergence.main} sizes="(min-width: 1024px) 720px, 92vw" />
           <div className="pair">
             {convergence.details.map((pic) => (
-              <Figure key={pic.slug} pic={pic} sizes="(min-width: 1024px) 350px, 45vw" fit="cover" position="center top" className="square" />
+              <Figure key={pic.slug} pic={pic} sizes="(min-width: 1024px) 350px, 45vw" />
             ))}
           </div>
         </div>

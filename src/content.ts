@@ -61,7 +61,7 @@ export const handoffs = {
   intro:
     'Each job moved through multiple teams, documents and decisions. Changes to contracts, resources and completed work had consequences elsewhere in the system, making continuity between workflows as important as the individual interfaces.',
   scheduler: {
-    slug: 'asset-scheduler',
+    slug: 'cs-asset-scheduler',
     alt: 'UpRate plant & labour scheduler showing resource rows and assignment blocks across a weekly timeline',
   } as Pic,
   annotations: [
@@ -86,15 +86,15 @@ export const handoffs = {
       label: 'SCALE',
       title: 'Weeks of work in one view',
       text: 'Schedulers managed concurrent bookings across labour, cranes, transport and equipment. Individual resources could have multiple assignments in one day, each with different durations and states.',
-      images: [{ slug: 'labour-scheduler-overview', alt: 'Scheduler scale view' }],
+      images: [{ slug: 'cs-scale', alt: 'Scheduler scale view' }],
     },
     {
       label: 'DEPENDENCY',
       title: 'Every assignment relied on connected information',
       text: 'A scheduled assignment brought together the customer, job requirements, time, resources, hire agreement, charges and supporting documents. The Scheduler could not operate as an isolated calendar.',
       images: [
-        { slug: 'labour-scheduler-bulk-assign', alt: 'Assignment dependency view' },
-        { slug: 'labour-scheduler-create-assignment', alt: 'Resource panel' },
+        { slug: 'cs-dependency-a', alt: 'Assignment dependency view' },
+        { slug: 'cs-dependency-b', alt: 'Resource panel' },
       ],
     },
     {
@@ -102,8 +102,8 @@ export const handoffs = {
       title: 'One update could affect the wider workflow',
       text: 'Moving a booking, replacing a resource or cancelling an assignment could affect timesheets, approvals, charges and final invoicing. Changes needed to remain visible and understandable across teams.',
       images: [
-        { slug: 'timesheets', alt: 'Assignment change view' },
-        { slug: 'invoicing', alt: 'Resource assignment panel' },
+        { slug: 'cs-change-timesheets', alt: 'Assignment change view' },
+        { slug: 'cs-change-invoicing', alt: 'Resource assignment panel' },
       ],
     },
   ] as { label: string; title: string; text: string; images: Pic[] }[],
@@ -189,14 +189,14 @@ export const connectedNext = {
       accent: 'purple',
       title: 'Scheduled work became evidence of completed work.',
       text: 'Assigned labour submitted timesheets against the work they had completed. Hiring Managers could track submissions and Accounts could work from the same underlying record.',
-      image: { slug: 'timesheets', alt: 'Timesheet submission interface' },
+      image: { slug: 'cs-panel-timesheets', alt: 'Timesheet submission interface' },
     },
     {
       label: 'Invoice',
       accent: 'orange',
       title: 'Accounts could see what was ready and what was blocking invoicing.',
       text: 'Timesheet and contract information carried forward into the invoicing workflow, giving Accounts the evidence and status needed to move each job forward.',
-      image: { slug: 'invoicing', alt: 'Invoice management interface' },
+      image: { slug: 'cs-panel-invoicing', alt: 'Invoice management interface' },
     },
   ] as { label: string; accent: Accent; title: string; text: string; image: Pic }[],
 };

@@ -17,7 +17,7 @@ export function DesignSystem() {
         <ul className="ds-gallery" aria-label="Design system foundations">
           {d.gallery.map((g) => (
             <li key={g.slug} className={`ds-gallery__item ds-gallery__item--${g.slug}`}>
-              <Figure pic={g} sizes="(min-width: 1024px) 480px, 70vw" fit="cover" position="left top" caption={<span className="pill">{g.label}</span>} />
+              <Figure pic={g} sizes="(min-width: 1100px) 500px, 440px" caption={<span className="pill">{g.label}</span>} />
             </li>
           ))}
         </ul>

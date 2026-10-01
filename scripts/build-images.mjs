@@ -1,11 +1,9 @@
 // Generates responsive WebP derivatives from assets/source into public/img
 // and writes src/generated/images.json (dimensions + srcset) for the app.
 //
-// Two kinds of product imagery:
-// - Design images exported from the Figma file (assets/source/design/hero/…), cropped with
-//   the exact framing the design uses (the `figma` option below).
-// - Older captures from "UpRate Screenshots" (git-ignored), cropped to the app viewport so the
-//   browser chrome and macOS menu bar (which show a third party's email address) are never published.
+// All case-study imagery comes from the Figma design file (assets/source/design/…). Product
+// screenshots are cropped to the exact framing each layer uses in the design (the `figma` option),
+// using the values Figma's design context reports for that layer.
 //
 // Usage: `npm run images` rebuilds everything; `npm run images -- <slug> [<slug>…]` rebuilds only
 // those slots and keeps every other entry in images.json as it is.
@@ -19,24 +17,19 @@ const SRC = path.join(ROOT, 'assets/source');
 const OUT = path.join(ROOT, 'public/img');
 const JSON_OUT = path.join(ROOT, 'src/generated/images.json');
 
-// App viewport inside a 2880×1800 capture (below the browser chrome, right of the app sidebar).
-const VIEWPORT = { left: 344, top: 236, width: 2536, height: 1564 };
-// Captures where the app sidebar is collapsed: skip the collapsed rail too.
-const VIEWPORT_COLLAPSED = { left: 420, top: 236, width: 2460, height: 1564 };
-
-const shot = (dir, file) => path.join(SRC, 'screenshots', dir, file);
 const design = (file) => path.join(SRC, 'design', file);
 const brand = (file) => path.join(SRC, 'brand', file);
 const hero = (file) => path.join(SRC, 'design/hero', file);
+const cs = (file) => path.join(SRC, 'design/case-study', file);
 
 /**
- * Framing copied from Figma (get_design_context): the layer's box size (px, including its 2px border)
- * and the image fill's position/size as percentages of the box. `cover: true` = object-fit: cover.
+ * Framing copied from Figma (get_design_context): the layer's box size in px (including its border,
+ * `border` px wide, default 2) and the image fill's position/size as percentages of the inner box.
+ * `cover: true` = object-fit: cover.
  */
-const BORDER = 2;
-function figmaCrop(meta, { box: [boxW, boxH], cover, img }) {
-  const w = boxW - 2 * BORDER;
-  const h = boxH - 2 * BORDER;
+function figmaCrop(meta, { box: [boxW, boxH], border = 2, cover, img }) {
+  const w = boxW - 2 * border;
+  const h = boxH - 2 * border;
   if (cover) {
     const scale = Math.max(w / meta.width, h / meta.height);
     const cw = w / scale, ch = h / scale;
@@ -49,7 +42,15 @@ function figmaCrop(meta, { box: [boxW, boxH], cover, img }) {
   return { left, top, width: Math.min(meta.width - left, Math.round(w / sx)), height: Math.min(meta.height - top, Math.round(h / sy)) };
 }
 
-/** slug → { file, crop?, figma?, widths?, whiten? } */
+/** Crops a source with `figma` framing (or a plain `crop`) and returns a PNG buffer. */
+async function framed(file, { crop, figma } = {}) {
+  let img = sharp(file).rotate();
+  if (crop) img = img.extract(crop);
+  if (figma) img = img.extract(figmaCrop(await sharp(file).metadata(), figma));
+  return img.png().toBuffer();
+}
+
+/** slug → { file, crop?, figma?, overlay?, widths?, whiten? } */
 const MANIFEST = {
   // UpRate hero collage: Figma 'Case study page' → Group 1174 (136:15034), one entry per window.
   'hero-labour-scheduler': { file: hero('labour-scheduler.png'), figma: { box: [1310.892, 703.984], cover: true } },
@@ -62,24 +63,35 @@ const MANIFEST = {
   // Homepage headshot. whiten lifts the off-white studio backdrop to pure white so it sits seamlessly on the white panel.
   'headshot': { file: brand('headshot.png'), widths: [480, 840], whiten: true },
 
-  // Original product screenshots (~/Downloads/UpRate Screenshots)
-  'labour-scheduler-overview': { file: shot('labour-scheduler', 'Screenshot 2026-07-08 at 14.43.02.png'), crop: VIEWPORT },
-  'labour-scheduler-bulk-assign': { file: shot('labour-scheduler', 'Screenshot 2026-07-08 at 15.22.38.png'), crop: VIEWPORT },
-  'labour-scheduler-create-assignment': { file: shot('labour-scheduler', 'Screenshot 2026-07-08 at 15.23.26.png'), crop: VIEWPORT },
-  'asset-scheduler': { file: shot('asset-scheduler', 'Screenshot 2026-07-08 at 14.39.32.png'), crop: VIEWPORT },
-  'invoicing': { file: shot('invoice-manager', 'Screenshot 2026-07-08 at 15.40.00.png'), crop: VIEWPORT_COLLAPSED },
-  'timesheets': { file: shot('timesheets', 'Screenshot 2026-07-08 at 15.34.44.png'), crop: { left: 344, top: 236, width: 1100, height: 1564 } },
+  // "The complexity lived in the handoffs": Main evidence (101:14804) and Evidence blocks (101:14844).
+  'cs-asset-scheduler': { file: cs('asset-scheduler.png'), figma: { box: [1040, 571], img: { left: 0, top: -0.49, width: 100.38, height: 114.35 } } },
+  'cs-scale': { file: cs('scale.png'), figma: { box: [475.333, 178], border: 1, img: { left: -6.04, top: -45.55, width: 110.22, height: 190.21 } } },
+  'cs-dependency-a': { file: cs('dependency-a.png'), figma: { box: [302, 178], border: 1, img: { left: -62.61, top: -42.01, width: 182.84, height: 222.29 } } },
+  'cs-dependency-b': { file: cs('dependency-b.png'), figma: { box: [165, 178], border: 1, img: { left: -173.95, top: 0.21, width: 274.61, height: 173.6 } } },
+  'cs-change-timesheets': { file: hero('timesheets.png'), figma: { box: [267, 170], border: 1, img: { left: -0.13, top: -0.97, width: 100.02, height: 224.51 } } },
+  'cs-change-invoicing': { file: hero('invoicing.png'), figma: { box: [199, 170], border: 1, img: { left: -1, top: -2.04, width: 253.5, height: 214.26 } } },
 
-  // Design-only artwork exported from the Figma file (not present in the screenshot folder)
+  // "The Assignment connected what happened next": Frame 1334 (258:25526).
+  'cs-panel-timesheets': { file: hero('timesheets.png'), figma: { box: [616, 391.86], border: 1, img: { left: -0.13, top: -0.97, width: 100.02, height: 224.51 } } },
+  // The Invoicing panel is a composite in Figma (several captures and masks); invoicing-panel.png is its 2x
+  // export (259:25528). Trim the exported 1px stroke, then lay the "Invoicing" title (264:25562) back on top.
+  'cs-panel-invoicing': {
+    file: cs('invoicing-panel.png'),
+    crop: { left: 2, top: 2, width: 1232, height: 784 },
+    overlay: { file: hero('invoicing.png'), figma: { box: [125, 40], border: 0, img: { left: -3.2, top: -17.35, width: 813.64, height: 1821.24 } }, left: 0, top: 10, width: 250, height: 80 },
+  },
+
+  // Design-only artwork exported from the Figma file
   'hero-gradient': { file: design('44901.png'), widths: [1440] },
   'contract-scheduler': { file: design('2bea8.png') },
   'assignment-detail': { file: design('6cd4d.png') },
   'labour-resources': { file: design('16b2b.png') },
+  // "The work existed before a resource was assigned": Frame 1331 (234:22584) and Frame 1332 (234:23615).
   'research-whiteboard': { file: design('df8ec.png') },
-  'research-spreadsheet': { file: design('432df.png') },
-  'research-screen': { file: design('2ad94.png') },
-  'legacy-scheduler': { file: design('a5e41.png') },
-  'assignment-mockup': { file: design('fe8f0.png') },
+  'research-spreadsheet': { file: design('432df.png'), figma: { box: [248, 245], img: { left: 0, top: 0, width: 228.39, height: 100 } } },
+  'research-screen': { file: design('2ad94.png'), figma: { box: [375, 245], img: { left: -0.03, top: -18.79, width: 136.93, height: 157.18 } } },
+  'legacy-scheduler': { file: design('a5e41.png'), figma: { box: [1006, 231], border: 0, img: { left: -0.3, top: -1.33, width: 100.6, height: 102.67 } } },
+  'assignment-mockup': { file: design('fe8f0.png'), figma: { box: [758, 328], border: 1.5, img: { left: -2.9, top: -6.74, width: 105.8, height: 113.17 } } },
   'contract-scheduler-shipped': { file: design('d4290.png') },
   'assignment-actions': { file: design('f5d32.png') },
   'ds-overview': { file: design('1d6fd.png') },
@@ -103,13 +115,15 @@ const previous = fs.existsSync(JSON_OUT) ? JSON.parse(fs.readFileSync(JSON_OUT, 
 const result = {};
 for (const slug of Object.keys(MANIFEST)) if (only.length && !only.includes(slug) && previous[slug]) result[slug] = previous[slug];
 
-for (const [slug, { file, crop, figma, widths = DEFAULT_WIDTHS, whiten }] of Object.entries(MANIFEST)) {
+for (const [slug, entry] of Object.entries(MANIFEST)) {
   if (only.length && !only.includes(slug)) continue;
-  let base = sharp(file).rotate();
-  if (crop) base = base.extract(crop);
-  if (figma) base = base.extract(figmaCrop(await sharp(file).metadata(), figma));
-  if (whiten) base = base.linear(255 / 243, 0);
-  const buf = await base.png().toBuffer();
+  const { file, overlay, widths = DEFAULT_WIDTHS, whiten } = entry;
+  let buf = await framed(file, entry);
+  if (overlay) {
+    const layer = await sharp(await framed(overlay.file, overlay)).resize(overlay.width, overlay.height, { fit: 'fill' }).png().toBuffer();
+    buf = await sharp(buf).composite([{ input: layer, left: overlay.left, top: overlay.top }]).png().toBuffer();
+  }
+  if (whiten) buf = await sharp(buf).linear(255 / 243, 0).png().toBuffer();
   const { width, height } = await sharp(buf).metadata();
   const sizes = [...new Set(widths.map((w) => Math.min(w, width)))];
   const variants = [];
