@@ -685,10 +685,11 @@ a.nav__link:hover {
    - image 83: the gradient artwork, blurred 50px at 20% opacity, across the top of the page;
    - Rectangle 854: a white sheet with a rounded top-left corner, rotated 7.2° so its top edge slants
      down to the right. Its corner sits at (42, 50) in the 1728px design; values scale down below that. */
+/* Clipped on both axes: the rotated sheet's far corner otherwise hangs ~3000px below the page as empty scroll. */
 .cs-page {
   position: relative;
   isolation: isolate;
-  overflow-x: clip;
+  overflow: clip;
 }
 .cs-page::before {
   content: '';
@@ -708,7 +709,7 @@ a.nav__link:hover {
   z-index: -1;
   left: clamp(12px, 2.42vw, 42px);
   top: clamp(14px, 2.9vw, 50px);
-  bottom: -20%; /* runs past the end of the page, so its bottom edge is never seen */
+  bottom: -20%; /* runs past the end of the page (clipped there), so its bottom edge is never seen */
   width: 300vw;
   background: var(--white);
   border-top-left-radius: clamp(24px, 3.9vw, 67px);
