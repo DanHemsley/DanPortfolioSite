@@ -27,8 +27,11 @@ export function CaseStudy() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <SiteHeader />
-      <main id="main" tabIndex={-1}>
+      {/* The page sits on a slanted white sheet over a faint gradient, as in the design (Rectangle 854 / image 83). */}
+      <div className="cs-page">
+        <div className="cs-page__sheet" aria-hidden="true" />
+        <SiteHeader wide />
+        <main id="main" tabIndex={-1}>
         <Hero />
         <Connecting />
         <Teams />
@@ -42,7 +45,8 @@ export function CaseStudy() {
         <DesignSystem />
         <HowIWork />
         <Closing />
-      </main>
+        </main>
+      </div>
     </LightboxProvider>
   );
 }

@@ -7,7 +7,7 @@ import { Dot } from '../components/icons';
 export function ConnectedNext() {
   return (
     <section className="section" aria-labelledby="next-title">
-      <div className="container">
+      <div className="container container--wide">
         <SectionIntro id="next-title" title={c.title} intro={c.intro} size="xl" />
         <Flow steps={c.flow} className="flow--center" />
         <p className="callout callout--wide">{c.callout}</p>
@@ -20,7 +20,7 @@ export function ConnectedNext() {
               </p>
               <h3 className="h3">{p.title}</h3>
               <p className="lead">{p.text}</p>
-              <Figure pic={p.image} sizes="(min-width: 900px) 620px, 88vw" className="duo__image" />
+              <Figure pic={p.image} sizes="(min-width: 900px) 620px, 88vw" className="duo__image frame-thin" />
             </article>
           ))}
         </div>
