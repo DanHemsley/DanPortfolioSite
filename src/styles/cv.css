@@ -271,7 +271,8 @@
 
 /* UpRate: the featured role, as a card. */
 .role--featured {
-  margin-bottom: 16px;
+  /* Clear space between the featured UpRate card and the earlier roles. */
+  margin-bottom: clamp(40px, 5vw, 72px);
   padding: clamp(24px, 3vw, 40px);
   border: 1px solid var(--line);
   border-left: 4px solid var(--blue);
