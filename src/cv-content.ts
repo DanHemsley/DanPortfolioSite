@@ -11,7 +11,8 @@ export const cvHero = {
 };
 
 // Figure + label split approved by Dan ("12+ years" -> "12+" / "years", etc.). The 83% card is worded from the
-// UpRate point "Achieved an average 83% improvement in user satisfaction across measured product releases."
+// former UpRate point "Achieved an average 83% improvement in user satisfaction across measured product releases."
+// (removed from the UpRate points at Dan's request, so the figure appears once).
 export const cvStats: { figure: string; label: string; text: string; accent: Accent }[] = [
   { figure: '12+', label: 'years', text: 'Across product design, UX and front-end development', accent: 'blue' },
   { figure: '2', label: 'products launched', text: 'From early discovery through customer delivery at UpRate', accent: 'red' },
@@ -56,7 +57,6 @@ export const cvExperience: Position[] = [
       'Built a reusable Figma design system covering components, variants, states, themes and tokens.',
       'Reduced design and QA work by approximately one to two days per release through clearer patterns and closer Engineering collaboration.',
       'Contributed directly to the Flutter codebase and remained involved through implementation and Design QA.',
-      'Achieved an average 83% improvement in user satisfaction across measured product releases.',
     ],
     tier: 'featured',
     caseStudy: { label: 'Explore the UpRate case study' },
