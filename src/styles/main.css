@@ -727,14 +727,43 @@ a.nav__link--tertiary:hover {
 }
 /* Long pages on desktop: current section heading in the centre, reading progress as a stroke around the border. */
 .float-nav__section,
-.float-nav__progress {
+.float-nav__progress,
+.float-nav__steps {
   display: none;
 }
 @media (min-width: 1024px) {
   .float-nav--progress {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    gap: 16px;
     width: min(calc(100% - 32px), 880px);
+  }
+  /* Previous / next section, beside the nav. */
+  .float-nav__steps {
+    display: flex;
+    gap: 4px;
+    padding-right: 8px;
+    border-right: 1px solid var(--line);
+  }
+  .float-nav__step {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--ink-700);
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+  }
+  .float-nav__step:hover:not(:disabled) {
+    background: #e2e9f0;
+  }
+  .float-nav__step:disabled {
+    opacity: 0.35;
+    cursor: default;
   }
   .float-nav__section {
     display: block;
@@ -744,7 +773,7 @@ a.nav__link--tertiary:hover {
     font-size: 15px;
     line-height: 1.4;
     color: var(--ink-700);
-    text-align: center;
+    text-align: left;
   }
   .float-nav__section span {
     display: block;
