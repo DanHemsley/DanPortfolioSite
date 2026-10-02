@@ -1281,9 +1281,6 @@ a.nav__link--tertiary:hover {
 .split__media .workflow {
   margin-top: 0;
 }
-.split__media .workflow--spaced {
-  margin-top: clamp(16px, 2.5vw, 32px);
-}
 .workflow__label {
   font-family: var(--f-body);
   font-weight: 300;
@@ -1296,6 +1293,30 @@ a.nav__link--tertiary:hover {
   padding: clamp(14px, 2vw, 22px);
   border-radius: 16px;
   background: var(--surface);
+}
+.stack--panels {
+  gap: clamp(24px, 3vw, 40px);
+}
+/* Panel footer: the workflow (title + steps) and the caption, left-aligned under the images. */
+.panel__footer {
+  display: grid;
+  gap: 10px;
+  padding: 16px 4px 2px;
+  border-top: 1px solid var(--line);
+}
+/* Title above the steps in both panels, so the two footers match at every width. */
+.workflow--inline {
+  gap: 10px;
+  margin-top: 0;
+}
+/* On a tinted panel the tags invert to white. */
+.flow--on-tint .pill--tag {
+  background: var(--white);
+}
+.caption--start {
+  font-size: 14px;
+  text-align: left;
+  text-wrap: pretty;
 }
 /* Widths from the design (329 / 248 / 375) so the three photos share a height. */
 .trio {

@@ -15,11 +15,8 @@ export function WorkExisted() {
         <div className="split__text">
           <SectionIntro id="existed-title" title={w.title} intro={w.intro} align="start" size="m" />
         </div>
-        <div className="split__media stack">
-          <div className="workflow">
-            <p className="workflow__label">{w.existing.label}</p>
-            <Flow steps={w.existing.steps} accents={EXISTING_ACCENTS} />
-          </div>
+        {/* Each panel carries its workflow (title + steps) and caption in a footer under the images. */}
+        <div className="split__media stack stack--panels">
           <div className="panel">
             <div className="trio">
               {w.research.map((pic) => (
@@ -27,15 +24,23 @@ export function WorkExisted() {
               ))}
             </div>
             <Figure pic={w.legacy} sizes="(min-width: 1024px) 1000px, 90vw" framed={false} />
-            <p className="caption">{w.legacyCaption}</p>
-          </div>
-          <div className="workflow workflow--spaced">
-            <p className="workflow__label">{w.required.label}</p>
-            <Flow steps={w.required.steps} accents={REQUIRED_ACCENTS} />
+            <div className="panel__footer">
+              <div className="workflow workflow--inline">
+                <p className="workflow__label">{w.existing.label}</p>
+                <Flow steps={w.existing.steps} accents={EXISTING_ACCENTS} className="flow--on-tint" />
+              </div>
+              <p className="caption caption--start">{w.legacyCaption}</p>
+            </div>
           </div>
           <div className="panel">
             <Figure pic={w.mockup} sizes="(min-width: 1024px) 1000px, 90vw" className="frame-ink frame-ink--thin" />
-            <p className="caption">{w.mockupCaption}</p>
+            <div className="panel__footer">
+              <div className="workflow workflow--inline">
+                <p className="workflow__label">{w.required.label}</p>
+                <Flow steps={w.required.steps} accents={REQUIRED_ACCENTS} className="flow--on-tint" />
+              </div>
+              <p className="caption caption--start">{w.mockupCaption}</p>
+            </div>
           </div>
         </div>
       </div>
