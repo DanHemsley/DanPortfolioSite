@@ -117,8 +117,15 @@ export function CvPage() {
               </h2>
               <ul className="stats">
                 {cvStats.map((s) => (
-                  <li key={s.value} className={`stat accent-border-${s.accent}`}>
-                    <p className="stat__value">{s.value}</p>
+                  <li key={s.figure} className={`stat stat--${s.accent}`}>
+                    {/* One paragraph, so it reads as "12+ years" etc. */}
+                    <p className="stat__value">
+                      <span className="stat__figure">{s.figure}</span>{' '}
+                      <span className="stat__label">
+                        <Dot accent={s.accent} />
+                        {s.label}
+                      </span>
+                    </p>
                     <p className="stat__text">{s.text}</p>
                   </li>
                 ))}
