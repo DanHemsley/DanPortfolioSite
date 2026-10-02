@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type MutableRefObject } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { CONTACT, CV, HOME } from '../links';
+import { ArrowIcon } from './icons';
 
 interface Props {
   /** Marks the matching nav item with aria-current. */
@@ -10,16 +11,29 @@ interface Props {
   progress?: boolean;
 }
 
-/** The heading text of the section being read: the last section whose top has passed 40% of the viewport. */
-function currentSectionTitle() {
+/** The page's sections, and the one being read: the last whose top has passed 40% of the viewport. */
+function readSections() {
   const sections = [...document.querySelectorAll<HTMLElement>('main section[aria-labelledby]')];
   const line = window.innerHeight * 0.4;
   const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
-  let active = atBottom ? sections[sections.length - 1] : undefined;
-  if (!active) for (const s of sections) if (s.getBoundingClientRect().top <= line) active = s;
-  const heading = active && document.getElementById(active.getAttribute('aria-labelledby') ?? '');
-  return heading?.textContent?.trim() ?? '';
+  let index = 0;
+  if (atBottom) index = sections.length - 1;
+  else sections.forEach((s, i) => s.getBoundingClientRect().top <= line && (index = i));
+  const heading = sections[index] && document.getElementById(sections[index].getAttribute('aria-labelledby') ?? '');
+  return { sections, index, atBottom, title: heading?.textContent?.trim() ?? '' };
 }
+
+/** Where the previous/next controls go from here. Previous returns to the start of the current section first. */
+function sectionTargets() {
+  const { sections, index, atBottom } = readSections();
+  const scrollPad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+  const intoCurrent = sections[index] ? sections[index].getBoundingClientRect().top < scrollPad - 24 : false;
+  const prev = intoCurrent ? index : index - 1;
+  const next = atBottom ? -1 : index + 1;
+  return { sections, prev: prev >= 0 && window.scrollY > 0 ? prev : -1, next: next < sections.length ? next : -1 };
+}
+
+const DESKTOP = '(min-width: 1024px)';
 
 /**
  * Reading progress drawn as the toolbar's own border: a stroke that runs clockwise from the top-left of the pill.
@@ -81,7 +95,26 @@ export function SiteHeader({ current, progress }: Props) {
   const ref = useRef<HTMLElement>(null);
   const [floating, setFloating] = useState(false);
   const [section, setSection] = useState('');
+  const [canStep, setCanStep] = useState({ prev: false, next: true });
   const setProgress = useRef<(p: number) => void>(() => {});
+  // While a smooth scroll is under way, repeated presses step on from where it's heading, not where it is.
+  const pending = useRef<{ index: number; until: number } | null>(null);
+
+  const goToSection = (dir: -1 | 1) => {
+    const { sections, prev, next } = sectionTargets();
+    let target = dir < 0 ? prev : next;
+    if (pending.current && Date.now() < pending.current.until) {
+      target = pending.current.index + dir;
+      if (target < 0 || target >= sections.length) return;
+    }
+    if (target < 0) return;
+    const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    pending.current = { index: target, until: Date.now() + (smooth ? 700 : 0) };
+    // html scroll-padding-top keeps the heading clear of the toolbar.
+    sections[target].scrollIntoView({ behavior: smooth ? 'smooth' : ('instant' as ScrollBehavior), block: 'start' });
+  };
+  const goRef = useRef(goToSection);
+  goRef.current = goToSection;
 
   // Show the toolbar once the header's bottom edge has scrolled above the viewport. setState skips re-rendering
   // when the value is unchanged, so checking on every scroll event is cheap.
@@ -92,7 +125,9 @@ export function SiteHeader({ current, progress }: Props) {
       if (progress) {
         const max = document.documentElement.scrollHeight - window.innerHeight;
         setProgress.current(max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0);
-        setSection(currentSectionTitle());
+        setSection(readSections().title);
+        const { prev, next } = sectionTargets();
+        setCanStep((c) => (c.prev === prev >= 0 && c.next === next >= 0 ? c : { prev: prev >= 0, next: next >= 0 }));
       }
     };
     update();
@@ -102,6 +137,23 @@ export function SiteHeader({ current, progress }: Props) {
       window.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
+  }, [progress]);
+
+  // Up/down arrow keys step between sections on desktop (long pages only). Left alone when typing, with modifier
+  // keys, or while the image viewer (a modal <dialog>) is open.
+  useEffect(() => {
+    if (!progress) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+      if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      if (!window.matchMedia(DESKTOP).matches || document.querySelector('dialog[open]')) return;
+      const t = e.target as HTMLElement | null;
+      if (t?.closest('input, textarea, select, [contenteditable="true"]')) return;
+      e.preventDefault();
+      goRef.current(e.key === 'ArrowDown' ? 1 : -1);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [progress]);
 
   return (
@@ -128,6 +180,16 @@ export function SiteHeader({ current, progress }: Props) {
             <p className="float-nav__section" aria-hidden="true">
               <span key={section}>{section}</span>
             </p>
+          )}
+          {progress && (
+            <div className="float-nav__steps">
+              <button type="button" className="float-nav__step" aria-label="Previous section" title="Previous section (↑)" disabled={!canStep.prev} onClick={() => goToSection(-1)}>
+                <ArrowIcon direction="up" size={20} />
+              </button>
+              <button type="button" className="float-nav__step" aria-label="Next section" title="Next section (↓)" disabled={!canStep.next} onClick={() => goToSection(1)}>
+                <ArrowIcon direction="down" size={20} />
+              </button>
+            </div>
           )}
           <nav aria-label="Main navigation (floating)">
             <NavLinks current={current} />
