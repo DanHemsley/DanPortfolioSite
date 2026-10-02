@@ -19,7 +19,7 @@ export const hero = {
     { label: 'Engineering Collaboration', accent: 'orange' },
   ] as { label: string; accent: Accent }[],
   summary:
-    "I led design across UpRate's connected back-office workflows, working closely with customers, the founder and engineering to simplify complex operational processes and create a more coherent product experience.",
+    'I led design across UpRate’s connected back-office workflows, working closely with customers, the founder and engineering to simplify complex operational processes and create a more coherent product experience.',
   cta: 'Explore the case study',
   collage: {
     main: { slug: 'hero-labour-scheduler', alt: 'UpRate dashboard overview' },
@@ -76,8 +76,9 @@ export const handoffs = {
     customer: 'Keltbray',
     requirement: '1 no 50 tonne swl MOD spreader beam 4m long',
     price: '£3850.00 + VAT',
-    note: 'Tom - please take DS17 VZF as your tractor unit is required in the garage',
-    operator: 'Oliver Bishop - Operator',
+    // Names and registration anonymised (fictional), matching the anonymised screenshots.
+    note: 'Lewis - please take MV16 GPA as your tractor unit is required in the garage',
+    operator: 'Callum Reeve - Operator',
     operatorMore: '+2',
     states: ['Hire Contract Signed', 'Contract On Hold'],
   },
@@ -133,7 +134,7 @@ export const workExisted = {
     { slug: 'research-screen', alt: 'Assignment model exploration' },
   ] as Pic[],
   legacy: { slug: 'legacy-scheduler', alt: 'Assignment workflow overview' } as Pic,
-  legacyCaption: "The Assignment already existed within UpRate's data model and APIs, but it wasn't organising the user experience.",
+  legacyCaption: 'The Assignment already existed within UpRate’s data model and APIs, but it wasn’t organising the user experience.',
   mockup: {
     slug: 'assignment-mockup',
     alt: 'Early mock-up introducing the Assignment level independently of the resource-first approach',
@@ -227,7 +228,7 @@ export const howIWork = {
     'I worked with customers, Product, the founder and Engineering to build shared understanding, make trade-offs visible and connect decisions from discovery through delivery.',
   callout: 'Shared reasoning kept customer evidence connected to what shipped.',
   practices: [
-    { label: 'CUSTOMERS', title: 'Listen across the workflow', text: 'Regular conversations and on-site sessions showed how work moved between Contract Managers, Hiring Managers, labour and Accounts—and where context was lost.', accent: 'blue' },
+    { label: 'CUSTOMERS', title: 'Listen across the workflow', text: 'Regular conversations and on-site sessions showed how work moved between Contract Managers, Hiring Managers, labour and Accounts, and where context was lost.', accent: 'blue' },
     { label: 'FRAMING', title: 'Separate the problem from the first solution', text: 'Customers and stakeholders often arrived with proposed answers. I mapped workflows and data relationships to separate the underlying need from the initial suggestion.', accent: 'red' },
     { label: 'DECISIONS', title: 'Turn disagreement into testable choices', text: 'When perspectives differed, I represented each direction fairly, surfaced its assumptions and compared flows and prototypes against customer evidence. This allowed the direction to change when the evidence supported it.', accent: 'purple' },
     { label: 'DELIVERY', title: 'Stay close through implementation', text: 'I involved engineers early and adapted the detail through Figma comments, stand-up questions and smaller decision chunks. This reduced Design QA time and kept the Assignment model intact through phased delivery.', accent: 'orange' },

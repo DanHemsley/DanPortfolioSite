@@ -132,5 +132,11 @@ To change or add an image:
 Composite layers (e.g. the Invoicing panel, several captures plus white masks) are exported from Figma as one image
 with `download_assets` at 2x. Layers outside the 1728px design frame export blank; use their source + framing instead.
 
+**Client data is anonymised in the image sources** (v0.5.9): operators' names, vehicle registrations and real mobile
+numbers in `assets/source/design/**` were replaced with fictional ones (numbers from Ofcom's 07700 900xxx drama range),
+and names in the research photos blurred. Dan's Figma file still has the real data, so a fresh export from Figma brings
+it back: re-anonymise before committing, and never use a product screenshot as the link-preview image (`og-image.jpg`
+is built from the branded `assets/source/brand/og-card.png`).
+
 `assets/source/screenshots` (git-ignored) holds the old July captures; never commit it, since their browser chrome shows
 a third party's email address.
