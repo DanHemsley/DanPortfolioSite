@@ -93,6 +93,7 @@ function NavLinks({ current }: Pick<Props, 'current'>) {
  */
 export function SiteHeader({ current, progress }: Props) {
   const ref = useRef<HTMLElement>(null);
+  const bar = useRef<HTMLDivElement>(null);
   const [floating, setFloating] = useState(false);
   const [section, setSection] = useState('');
   const [canStep, setCanStep] = useState({ prev: false, next: true });
@@ -130,12 +131,23 @@ export function SiteHeader({ current, progress }: Props) {
         setCanStep((c) => (c.prev === prev >= 0 && c.next === next >= 0 ? c : { prev: prev >= 0, next: next >= 0 }));
       }
     };
+    // While the page is scrolling, the progress stroke shows at full strength (data-scrolling); it settles back to
+    // a light tone shortly after scrolling stops. An attribute, not a class, so React's className can't clear it.
+    let idle = 0;
+    const onScroll = () => {
+      update();
+      if (!progress || !bar.current) return;
+      bar.current.setAttribute('data-scrolling', '');
+      window.clearTimeout(idle);
+      idle = window.setTimeout(() => bar.current?.removeAttribute('data-scrolling'), 700);
+    };
     update();
-    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', update);
     return () => {
-      window.removeEventListener('scroll', update);
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', update);
+      window.clearTimeout(idle);
     };
   }, [progress]);
 
@@ -170,7 +182,7 @@ export function SiteHeader({ current, progress }: Props) {
         </div>
       </header>
       {createPortal(
-        <div className={`float-nav${floating ? ' is-visible' : ''}${progress ? ' float-nav--progress' : ''}`}>
+        <div ref={bar} className={`float-nav${floating ? ' is-visible' : ''}${progress ? ' float-nav--progress' : ''}`}>
           {progress && <ProgressBorder value={setProgress} />}
           <Link to={HOME} className="float-nav__mark" aria-label="Dan Hemsley, home">
             {/* Flat logo (no baked-in drop shadow), cropped to the circle. */}

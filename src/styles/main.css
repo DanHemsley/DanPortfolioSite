@@ -799,12 +799,20 @@ a.nav__link--tertiary:hover {
     overflow: visible;
     pointer-events: none;
   }
+  /* At rest the progress stroke is a light tone, a step darker than the border; it strengthens to ink while
+     the page scrolls or the toolbar is hovered, and eases back afterwards. */
   .float-nav__progress rect {
     fill: none;
-    stroke: var(--ink-700);
+    stroke: #c5d0da;
     stroke-width: 1.5;
     stroke-linecap: round;
     stroke-dasharray: 0 100;
+    transition: stroke 0.6s ease;
+  }
+  .float-nav:hover .float-nav__progress rect,
+  .float-nav[data-scrolling] .float-nav__progress rect {
+    stroke: var(--ink-700);
+    transition-duration: 0.25s;
   }
 }
 @keyframes section-in {
