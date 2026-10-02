@@ -10,10 +10,13 @@ export const cvHero = {
   location: 'Tonbridge, Kent, UK',
 };
 
-export const cvStats: { value: string; text: string; accent: Accent }[] = [
-  { value: '12+ years', text: 'Across product design, UX and front-end development', accent: 'blue' },
-  { value: 'Two products launched', text: 'From early discovery through customer delivery at UpRate', accent: 'red' },
-  { value: '1–2 days saved per release', text: 'Through reusable design-system components and clearer Design QA', accent: 'purple' },
+// Figure + label split approved by Dan ("12+ years" -> "12+" / "years", etc.). The 83% card is worded from the
+// UpRate point "Achieved an average 83% improvement in user satisfaction across measured product releases."
+export const cvStats: { figure: string; label: string; text: string; accent: Accent }[] = [
+  { figure: '12+', label: 'years', text: 'Across product design, UX and front-end development', accent: 'blue' },
+  { figure: '2', label: 'products launched', text: 'From early discovery through customer delivery at UpRate', accent: 'red' },
+  { figure: '1–2', label: 'days saved per release', text: 'Through reusable design-system components and clearer Design QA', accent: 'purple' },
+  { figure: '83%', label: 'average improvement in user satisfaction', text: 'Across measured product releases at UpRate', accent: 'orange' },
 ];
 
 export const cvProfile = {
