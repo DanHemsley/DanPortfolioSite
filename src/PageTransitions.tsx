@@ -7,7 +7,7 @@ import { CASE_STUDY, CONTACT, CV, HOME } from './links';
  * Page transitions.
  *
  * - Internal link clicks run inside a View Transition: the old page eases out while the new one eases in
- *   (CSS in main.css, "Page transitions"). The header logo and nav are named, so they hold still between pages.
+ *   (CSS in main.css, "Page transitions"). The header is named, so it holds still between inner pages.
  * - First load, back/forward, and browsers without View Transitions get a short entrance animation instead.
  * - Reduced motion: no interception and no animation; pages switch instantly.
  *

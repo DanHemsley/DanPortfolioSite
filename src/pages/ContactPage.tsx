@@ -85,9 +85,9 @@ export function ContactPage() {
 
               {/* 4. Secondary actions */}
               <nav className="actions contact__secondary" aria-label="More about Dan">
-                <ActionLink href={CASE_STUDY}>{c.secondary.work}</ActionLink>
-                <ActionLink href={CV}>{c.secondary.cv}</ActionLink>
-                <ActionLink href={PROFILE_LINKS.cvPdf} srSuffix="(PDF)" download>
+                <ActionLink href={CASE_STUDY} variant="tertiary">{c.secondary.work}</ActionLink>
+                <ActionLink href={CV} variant="tertiary">{c.secondary.cv}</ActionLink>
+                <ActionLink href={PROFILE_LINKS.cvPdf} variant="tertiary" srSuffix="(PDF)" download>
                   {c.secondary.download}
                 </ActionLink>
               </nav>

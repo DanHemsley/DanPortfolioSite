@@ -660,6 +660,15 @@ a.nav__link:hover {
   background: var(--surface);
   border-color: #c5d0da;
 }
+/* Tertiary: a tinted pill for white backgrounds, where the white secondary pill disappears. */
+.nav__link--tertiary {
+  background: var(--surface);
+  border-color: var(--surface);
+}
+a.nav__link--tertiary:hover {
+  background: #e2e9f0;
+  border-color: #e2e9f0;
+}
 .nav__link--pending {
   cursor: not-allowed;
   opacity: 0.55;
@@ -1700,15 +1709,11 @@ a.nav__link:hover {
 /* ==========================================================================
    Page transitions (src/PageTransitions.tsx)
    Link clicks: the old page eases out and up, the new one eases in from just below. The header (while on screen)
-   and the logo are named, so they hold still or glide to their new place rather than fading with the page.
+   is named, so it holds still between inner pages rather than fading with the page.
    Elsewhere (first load, back/forward, no View Transition support): the page content eases in.
    ========================================================================== */
 .site-header--anchored {
   view-transition-name: site-header;
-}
-.site-header--anchored .site-header__mark,
-.home__mark {
-  view-transition-name: site-mark;
 }
 ::view-transition-old(root) {
   animation: page-out 0.2s cubic-bezier(0.4, 0, 1, 1) both;
@@ -1716,8 +1721,7 @@ a.nav__link:hover {
 ::view-transition-new(root) {
   animation: page-in 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) 0.08s both;
 }
-::view-transition-group(site-header),
-::view-transition-group(site-mark) {
+::view-transition-group(site-header) {
   animation-duration: 0.45s;
   animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
