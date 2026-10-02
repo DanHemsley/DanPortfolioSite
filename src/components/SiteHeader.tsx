@@ -173,7 +173,8 @@ export function SiteHeader({ current, progress }: Props) {
         <div className={`float-nav${floating ? ' is-visible' : ''}${progress ? ' float-nav--progress' : ''}`}>
           {progress && <ProgressBorder value={setProgress} />}
           <Link to={HOME} className="float-nav__mark" aria-label="Dan Hemsley, home">
-            <img src="/favicon.svg" width="40" height="40" alt="" />
+            {/* Flat logo (no baked-in drop shadow), cropped to the circle. */}
+            <img src="/logo-mark.svg" width="44" height="44" alt="" />
           </Link>
           {progress && (
             // Visual cue only: the headings themselves are in the page for screen readers.
