@@ -630,9 +630,24 @@ main:focus {
   gap: 16px;
   padding-block: 24px;
 }
+/* The header logo image has 8/67 of transparent margin around the circle for its drop shadow; the hover ring
+   follows the circle itself. */
 .site-header__mark {
+  position: relative;
   display: block;
   border-radius: 50%;
+}
+.site-header__mark::after {
+  content: '';
+  position: absolute;
+  inset: calc(11.94% - 2px);
+  border: 2px solid transparent;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: border-color 0.2s ease;
+}
+.site-header__mark:hover::after {
+  border-color: #c5d0da;
 }
 .site-header__mark img {
   width: clamp(56px, 4.2vw, 72px);
@@ -697,7 +712,7 @@ a.nav__link--tertiary:hover {
   justify-content: space-between;
   gap: 24px;
   width: min(calc(100% - 32px), 560px);
-  padding: 8px 8px 8px 10px;
+  padding: 8px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgb(255 255 255 / 0.85);
@@ -807,8 +822,14 @@ a.nav__link--tertiary:hover {
 }
 .float-nav__mark img {
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: box-shadow 0.2s ease;
+}
+/* Linked logos answer hover with a ring, like the nav pills' border. */
+.float-nav__mark:hover img {
+  box-shadow: 0 0 0 2px #c5d0da;
 }
 .float-nav .nav {
   gap: 8px;
