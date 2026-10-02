@@ -1696,3 +1696,51 @@ a.nav__link:hover {
   font-weight: 700;
   color: var(--ink-700);
 }
+
+/* ==========================================================================
+   Page transitions (src/PageTransitions.tsx)
+   Link clicks: the old page eases out and up, the new one eases in from just below. The header (while on screen)
+   and the logo are named, so they hold still or glide to their new place rather than fading with the page.
+   Elsewhere (first load, back/forward, no View Transition support): the page content eases in.
+   ========================================================================== */
+.site-header--anchored {
+  view-transition-name: site-header;
+}
+.site-header--anchored .site-header__mark,
+.home__mark {
+  view-transition-name: site-mark;
+}
+::view-transition-old(root) {
+  animation: page-out 0.2s cubic-bezier(0.4, 0, 1, 1) both;
+}
+::view-transition-new(root) {
+  animation: page-in 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) 0.08s both;
+}
+::view-transition-group(site-header),
+::view-transition-group(site-mark) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+html[data-page-enter] main,
+html[data-page-enter] .site-footer {
+  animation: page-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
