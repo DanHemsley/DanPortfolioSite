@@ -18,7 +18,7 @@ const copy = {
 };
 
 export function Home() {
-  usePageMeta('Dan Hemsley — Senior Product Designer', 'Bringing clarity to complex products, systems and user journeys.', HOME);
+  usePageMeta('Dan Hemsley | Senior Product Designer', 'Bringing clarity to complex products, systems and user journeys.', HOME);
   const photo = images.headshot;
   return (
     <main className="home">

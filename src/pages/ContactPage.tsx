@@ -11,7 +11,7 @@ const mailto = email ? `mailto:${email}` : null;
 
 export function ContactPage() {
   usePageMeta(
-    'Contact — Dan Hemsley',
+    'Contact | Dan Hemsley',
     'Contact Dan Hemsley, a Senior Product Designer specialising in complex B2B products, connected workflows and design systems.',
     CONTACT,
   );

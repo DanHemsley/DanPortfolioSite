@@ -6,7 +6,7 @@ export const cvHero = {
   role: 'Senior Product Designer',
   statement: 'I turn complex systems and operational workflows into clear, coherent product experiences.',
   intro:
-    'I have 12+ years of experience across product design, UX, publishing and front-end development. Most recently, I led end-to-end design for UpRate’s B2B SaaS platform—working from customer research and product strategy through interaction design, design systems and delivery.',
+    'I have 12+ years of experience across product design, UX, publishing and front-end development. Most recently, I led end-to-end design for UpRate’s B2B SaaS platform, working from customer research and product strategy through interaction design, design systems and delivery.',
   location: 'Tonbridge, Kent, UK',
 };
 

@@ -145,9 +145,11 @@ for (const [slug, entry] of Object.entries(MANIFEST)) {
 const ordered = Object.fromEntries(Object.keys(MANIFEST).filter((k) => result[k]).map((k) => [k, result[k]]));
 fs.writeFileSync(JSON_OUT, JSON.stringify(ordered, null, 2) + '\n');
 
-// Social preview (JPEG: some link-preview crawlers do not read WebP).
+// Social preview (JPEG: some link-preview crawlers do not read WebP). A branded card (name, role, homepage
+// headline on the hero gradient) rather than a product screenshot, so link previews never show client data.
+// brand/og-card.png is a 2x render; this also gives the image to upload in Figma Make's site settings.
 {
-  const { file } = MANIFEST['hero-labour-scheduler'];
-  await sharp(file).resize(1200, 630, { fit: 'cover', position: 'top' }).jpeg({ quality: 82 }).toFile(path.join(ROOT, 'public/og-image.jpg'));
+  const file = brand('og-card.png');
+  await sharp(file).resize(1200, 630).jpeg({ quality: 88 }).toFile(path.join(ROOT, 'public/og-image.jpg'));
   console.log('og-image.jpg 1200×630');
 }

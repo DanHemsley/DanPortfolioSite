@@ -64,7 +64,7 @@ function Role({ p }: { p: Position }) {
 
 export function CvPage() {
   usePageMeta(
-    'CV — Dan Hemsley, Senior Product Designer',
+    'CV | Dan Hemsley, Senior Product Designer',
     'Senior Product Designer with 12+ years of experience across B2B SaaS, UX, design systems and front-end development.',
     CV,
   );
