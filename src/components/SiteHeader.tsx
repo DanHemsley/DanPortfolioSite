@@ -54,7 +54,8 @@ export function SiteHeader({ current }: Props) {
 
   return (
     <>
-      <header ref={ref} className="site-header">
+      {/* Named for page transitions only while on screen (see PageTransitions / main.css). */}
+      <header ref={ref} className={floating ? 'site-header' : 'site-header site-header--anchored'}>
         <div className="container container--wide site-header__inner">
           <Link to={HOME} className="site-header__mark" aria-label="Dan Hemsley, home">
             <img src="/favicon.svg" width="72" height="72" alt="" />
