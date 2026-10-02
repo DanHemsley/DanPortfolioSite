@@ -18,7 +18,7 @@ import { Closing } from '../sections/Closing';
 
 export function CaseStudy() {
   usePageMeta(
-    'UpRate case study — Dan Hemsley',
+    'UpRate case study | Dan Hemsley',
     'How I redesigned UpRate’s connected back-office scheduling workflow around the Assignment model.',
     CASE_STUDY,
   );
