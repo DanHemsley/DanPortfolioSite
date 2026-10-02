@@ -725,6 +725,57 @@ a.nav__link--tertiary:hover {
   display: block;
   border-radius: 50%;
 }
+/* Long pages on desktop: current section heading in the centre, reading progress as a stroke around the border. */
+.float-nav__section,
+.float-nav__progress {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .float-nav--progress {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    width: min(calc(100% - 32px), 880px);
+  }
+  .float-nav__section {
+    display: block;
+    min-width: 0;
+    font-family: var(--f-body);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--ink-700);
+    text-align: center;
+  }
+  .float-nav__section span {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    animation: section-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .float-nav__progress {
+    display: block;
+    position: absolute;
+    inset: -1px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    overflow: visible;
+    pointer-events: none;
+  }
+  .float-nav__progress rect {
+    fill: none;
+    stroke: var(--ink-700);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-dasharray: 0 100;
+  }
+}
+@keyframes section-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
 .float-nav__mark img {
   display: block;
   width: 40px;

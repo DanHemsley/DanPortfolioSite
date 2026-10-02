@@ -73,7 +73,7 @@ export function CvPage() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <SheetPage current="cv">
+      <SheetPage current="cv" progress>
         <main id="main" tabIndex={-1} className="cv">
           {/* 1. Hero */}
           <section className="cv-hero" aria-labelledby="cv-name">
