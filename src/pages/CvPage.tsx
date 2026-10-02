@@ -9,18 +9,20 @@ import { usePageMeta } from '../usePageMeta';
 
 const email = PROFILE_LINKS.email ? `mailto:${PROFILE_LINKS.email}` : null;
 
-const DownloadCv = ({ primary }: { primary?: boolean }) => (
-  <ActionLink href={PROFILE_LINKS.cvPdf} variant={primary ? 'primary' : 'secondary'} srSuffix="(PDF)" download>
+type Variant = 'primary' | 'secondary' | 'tertiary';
+
+const DownloadCv = ({ variant = 'secondary' }: { variant?: Variant }) => (
+  <ActionLink href={PROFILE_LINKS.cvPdf} variant={variant} srSuffix="(PDF)" download>
     Download my CV
   </ActionLink>
 );
-const LinkedIn = () => (
-  <ActionLink href={PROFILE_LINKS.linkedIn} srSuffix="(Dan Hemsley’s profile, opens in a new tab)" external>
+const LinkedIn = ({ variant = 'secondary' }: { variant?: Variant }) => (
+  <ActionLink href={PROFILE_LINKS.linkedIn} variant={variant} srSuffix="(Dan Hemsley’s profile, opens in a new tab)" external>
     LinkedIn
   </ActionLink>
 );
-const EmailMe = ({ primary }: { primary?: boolean }) => (
-  <ActionLink href={email} variant={primary ? 'primary' : 'secondary'}>
+const EmailMe = ({ variant = 'secondary' }: { variant?: Variant }) => (
+  <ActionLink href={email} variant={variant}>
     Email me
   </ActionLink>
 );
@@ -88,9 +90,10 @@ export function CvPage() {
                   {cvHero.location}
                 </p>
                 <div className="actions">
-                  <DownloadCv primary />
-                  <LinkedIn />
-                  <EmailMe />
+                  {/* Hero sits on the white sheet: tertiary buttons beside the primary. */}
+                  <DownloadCv variant="primary" />
+                  <LinkedIn variant="tertiary" />
+                  <EmailMe variant="tertiary" />
                 </div>
               </div>
               {/* Same headshot as the homepage and the CV PDF. Decorative here: the name is the h1 beside it. */}
@@ -202,7 +205,7 @@ export function CvPage() {
                 </h2>
                 <p className="cv-cta__text">{cvContact.text}</p>
                 <div className="actions actions--center">
-                  <EmailMe primary />
+                  <EmailMe variant="primary" />
                   <LinkedIn />
                   <DownloadCv />
                   <ActionLink href={HOME}>View my work</ActionLink>
