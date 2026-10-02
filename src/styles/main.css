@@ -1806,6 +1806,26 @@ a.nav__link--tertiary:hover {
   font-weight: 700;
   color: var(--ink-700);
 }
+/* Email on the right, balancing the details on the left; wraps under them on narrow screens. */
+.site-footer__email {
+  margin-left: auto;
+  color: var(--ink-700);
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease;
+}
+.site-footer__email:hover {
+  text-decoration-color: currentColor;
+}
+@media (max-width: 640px) {
+  .site-footer__email {
+    flex-basis: 100%;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
 
 /* ==========================================================================
    Page transitions (src/PageTransitions.tsx)
