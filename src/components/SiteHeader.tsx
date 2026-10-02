@@ -36,8 +36,9 @@ function sectionTargets() {
 const DESKTOP = '(min-width: 1024px)';
 
 /**
- * Reading progress drawn as the toolbar's own border: a stroke that runs clockwise from the top-left of the pill.
- * Sized to the toolbar with a ResizeObserver; the stroke length is set directly (no re-render per scroll).
+ * Reading progress drawn as the toolbar's own border. It starts at 6 o'clock under the logo (the bottom of the pill's
+ * left end, where the logo sits centred) and runs clockwise: up round the logo, along the top, round the right end and
+ * back along the bottom. Sized with a ResizeObserver; the stroke is set directly (no re-render per scroll).
  */
 function ProgressBorder({ value }: { value: MutableRefObject<(p: number) => void> }) {
   const svg = useRef<SVGSVGElement>(null);
@@ -55,11 +56,23 @@ function ProgressBorder({ value }: { value: MutableRefObject<(p: number) => void
       r.setAttribute('width', String(width - 1));
       r.setAttribute('height', String(height - 1));
       r.setAttribute('rx', String((height - 1) / 2));
+      // An SVG rect's outline starts at the top-left end of its top edge and runs clockwise. Shift the dash pattern so
+      // it starts where the bottom edge meets the left end instead: top + right end + bottom = 2(w - 2r) + πr along.
+      const w = width - 1;
+      const rad = (height - 1) / 2;
+      const straight = Math.max(0, w - 2 * rad);
+      const perimeter = 2 * straight + 2 * Math.PI * rad;
+      const start = ((2 * straight + Math.PI * rad) / perimeter) * 100;
+      r.style.setProperty('stroke-dashoffset', String(-start.toFixed(3)));
     });
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-  value.current = (p) => rect.current?.style.setProperty('stroke-dasharray', `${(p * 100).toFixed(2)} 100`);
+  // Dash + gap always total the path length (100), so the dash can wrap past the rect's own start point.
+  value.current = (p) => {
+    const dash = Math.min(100, Math.max(0, p * 100));
+    rect.current?.style.setProperty('stroke-dasharray', `${dash.toFixed(2)} ${(100 - dash).toFixed(2)}`);
+  };
   return (
     <svg ref={svg} className="float-nav__progress" aria-hidden="true" focusable="false">
       <rect ref={rect} pathLength={100} />
