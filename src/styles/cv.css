@@ -308,7 +308,7 @@
   border-left: 4px solid var(--blue);
   border-radius: 16px;
   background: var(--white);
-  box-shadow: 0 20px 48px -32px rgb(23 47 68 / 0.4);
+  box-shadow: 0 0 48px -32px rgb(23 47 68 / 0.4);
 }
 .role--featured .role__company {
   font-weight: 300;
