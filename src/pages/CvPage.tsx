@@ -1,5 +1,6 @@
 import { ActionLink } from '../components/ActionLink';
 import { Dot } from '../components/icons';
+import { images } from '../images';
 import { SheetPage } from '../components/SheetPage';
 import { cvCapabilities, cvContact, cvEducation, cvExperience, cvHero, cvProfile, cvStats, type Position } from '../cv-content';
 import { CASE_STUDY, CV, HOME } from '../links';
@@ -74,28 +75,40 @@ export function CvPage() {
         <main id="main" tabIndex={-1} className="cv">
           {/* 1. Hero */}
           <section className="cv-hero" aria-labelledby="cv-name">
-            <div className="container">
-              <h1 id="cv-name" className="cv-hero__name">
-                {cvHero.name}
-              </h1>
-              <p className="cv-hero__role">{cvHero.role}</p>
-              <p className="cv-hero__statement">{cvHero.statement}</p>
-              <p className="cv-hero__intro">{cvHero.intro}</p>
-              <p className="cv-hero__location">
-                <Dot accent="blue" />
-                {cvHero.location}
-              </p>
-              <div className="actions">
-                <DownloadCv primary />
-                <LinkedIn />
-                <EmailMe />
+            <div className="container container--wide cv-hero__inner">
+              <div className="cv-hero__text">
+                <h1 id="cv-name" className="cv-hero__name">
+                  {cvHero.name}
+                </h1>
+                <p className="cv-hero__role">{cvHero.role}</p>
+                <p className="cv-hero__statement">{cvHero.statement}</p>
+                <p className="cv-hero__intro">{cvHero.intro}</p>
+                <p className="cv-hero__location">
+                  <Dot accent="blue" />
+                  {cvHero.location}
+                </p>
+                <div className="actions">
+                  <DownloadCv primary />
+                  <LinkedIn />
+                  <EmailMe />
+                </div>
               </div>
+              {/* Same headshot as the homepage and the CV PDF. Decorative here: the name is the h1 beside it. */}
+              <img
+                className="cv-hero__photo"
+                src={images.headshot.src}
+                srcSet={images.headshot.srcSet}
+                sizes="(min-width: 900px) 340px, 0px"
+                width={images.headshot.width}
+                height={images.headshot.height}
+                alt=""
+              />
             </div>
           </section>
 
           {/* 2. At a glance */}
           <section className="cv-section cv-section--tight" aria-labelledby="cv-glance">
-            <div className="container">
+            <div className="container container--wide">
               <h2 id="cv-glance" className="sr-only">
                 At a glance
               </h2>
@@ -112,7 +125,7 @@ export function CvPage() {
 
           {/* 3. Profile */}
           <section className="cv-section" aria-labelledby="cv-profile">
-            <div className="container cv-split">
+            <div className="container container--wide cv-split">
               <h2 id="cv-profile" className="cv-h2">
                 {cvProfile.title}
               </h2>
@@ -127,7 +140,7 @@ export function CvPage() {
 
           {/* 4. Experience */}
           <section className="cv-section" aria-labelledby="cv-experience">
-            <div className="container">
+            <div className="container container--wide">
               <h2 id="cv-experience" className="cv-h2 cv-h2--block">
                 Experience
               </h2>
@@ -140,8 +153,8 @@ export function CvPage() {
           </section>
 
           {/* 5. Capabilities */}
-          <section className="cv-section" aria-labelledby="cv-capabilities">
-            <div className="container">
+          <section className="cv-section cv-section--joined" aria-labelledby="cv-capabilities">
+            <div className="container container--wide">
               <h2 id="cv-capabilities" className="cv-h2 cv-h2--block">
                 Capabilities
               </h2>
@@ -163,16 +176,18 @@ export function CvPage() {
             </div>
           </section>
 
-          {/* 6. Education */}
-          <section className="cv-section cv-section--tight" aria-labelledby="cv-education">
-            <div className="container cv-split">
-              <h2 id="cv-education" className="cv-h2">
-                Education
-              </h2>
+          {/* 6. Education: a single compact row, styled like the capability cards above it */}
+          <section className="cv-section cv-section--flush" aria-labelledby="cv-education">
+            <div className="container container--wide">
               <div className="education">
-                <h3 className="education__school">{cvEducation.school}</h3>
-                <p>
-                  {cvEducation.degree} <span className="education__dates">· {cvEducation.dates}</span>
+                <h2 id="cv-education" className="capability__title">
+                  <Dot accent="blue" />
+                  Education
+                </h2>
+                <p className="education__detail">
+                  <span className="education__school">{cvEducation.school}</span>
+                  <span>{cvEducation.degree}</span>
+                  <span className="education__dates">{cvEducation.dates}</span>
                 </p>
               </div>
             </div>
@@ -180,7 +195,7 @@ export function CvPage() {
 
           {/* 7. Contact call to action */}
           <section className="cv-section" aria-labelledby="cv-contact">
-            <div className="container">
+            <div className="container container--wide">
               <div className="cv-cta">
                 <h2 id="cv-contact" className="cv-h2">
                   {cvContact.title}
