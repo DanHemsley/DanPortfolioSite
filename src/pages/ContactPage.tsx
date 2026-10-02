@@ -22,7 +22,7 @@ export function ContactPage() {
       </a>
       <SheetPage current="contact" fill>
         <main id="main" tabIndex={-1} className="contact-page">
-          <div className="container contact">
+          <div className="container container--wide contact">
             {/* 1–2. Introduction and primary action */}
             <section className="contact__intro" aria-labelledby="contact-title">
               <p className="chip">
