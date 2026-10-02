@@ -630,13 +630,21 @@ main:focus {
   gap: 16px;
   padding-block: 24px;
 }
+/* Header logo: the flat mark (no drop shadow), linking home. Visible circle up to 72px (was ~55px inside the
+   shadowed favicon). Hover ring as on the toolbar logo. */
 .site-header__mark {
   display: block;
   border-radius: 50%;
 }
 .site-header__mark img {
-  width: clamp(56px, 4.2vw, 72px);
+  display: block;
+  width: clamp(52px, 4.2vw, 72px);
   height: auto;
+  border-radius: 50%;
+  transition: box-shadow 0.2s ease;
+}
+.site-header__mark:hover img {
+  box-shadow: 0 0 0 2px #c5d0da;
 }
 .nav {
   display: flex;
@@ -659,6 +667,15 @@ main:focus {
 a.nav__link:hover {
   background: var(--surface);
   border-color: #c5d0da;
+}
+/* Tertiary: a tinted pill for white backgrounds, where the white secondary pill disappears. */
+.nav__link--tertiary {
+  background: var(--surface);
+  border-color: var(--surface);
+}
+a.nav__link--tertiary:hover {
+  background: #e2e9f0;
+  border-color: #e2e9f0;
 }
 .nav__link--pending {
   cursor: not-allowed;
@@ -688,7 +705,7 @@ a.nav__link:hover {
   justify-content: space-between;
   gap: 24px;
   width: min(calc(100% - 32px), 560px);
-  padding: 8px 8px 8px 10px;
+  padding: 8px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgb(255 255 255 / 0.85);
@@ -716,10 +733,104 @@ a.nav__link:hover {
   display: block;
   border-radius: 50%;
 }
+/* Long pages on desktop: current section heading in the centre, reading progress as a stroke around the border. */
+.float-nav__section,
+.float-nav__progress,
+.float-nav__steps {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .float-nav--progress {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    gap: 16px;
+    width: min(calc(100% - 32px), 880px);
+  }
+  /* Previous / next section, beside the nav. */
+  .float-nav__steps {
+    display: flex;
+    gap: 4px;
+    padding-right: 8px;
+    border-right: 1px solid var(--line);
+  }
+  .float-nav__step {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--ink-700);
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+  }
+  .float-nav__step:hover:not(:disabled) {
+    background: #e2e9f0;
+  }
+  .float-nav__step:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+  .float-nav__section {
+    display: block;
+    min-width: 0;
+    font-family: var(--f-body);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--ink-700);
+    text-align: left;
+  }
+  .float-nav__section span {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    animation: section-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .float-nav__progress {
+    display: block;
+    position: absolute;
+    inset: -1px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    overflow: visible;
+    pointer-events: none;
+  }
+  /* At rest the progress stroke is a light tone, a step darker than the border; it strengthens to ink while
+     the page scrolls or the toolbar is hovered, and eases back afterwards. */
+  .float-nav__progress rect {
+    fill: none;
+    stroke: #c5d0da;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-dasharray: 0 100;
+    transition: stroke 0.6s ease;
+  }
+  .float-nav:hover .float-nav__progress rect,
+  .float-nav[data-scrolling] .float-nav__progress rect {
+    stroke: var(--ink-700);
+    transition-duration: 0.25s;
+  }
+}
+@keyframes section-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
 .float-nav__mark img {
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: box-shadow 0.2s ease;
+}
+/* Linked logos answer hover with a ring, like the nav pills' border. */
+.float-nav__mark:hover img {
+  box-shadow: 0 0 0 2px #c5d0da;
 }
 .float-nav .nav {
   gap: 8px;
@@ -1178,9 +1289,6 @@ a.nav__link:hover {
 .split__media .workflow {
   margin-top: 0;
 }
-.split__media .workflow--spaced {
-  margin-top: clamp(16px, 2.5vw, 32px);
-}
 .workflow__label {
   font-family: var(--f-body);
   font-weight: 300;
@@ -1193,6 +1301,30 @@ a.nav__link:hover {
   padding: clamp(14px, 2vw, 22px);
   border-radius: 16px;
   background: var(--surface);
+}
+.stack--panels {
+  gap: clamp(24px, 3vw, 40px);
+}
+/* Panel footer: the workflow (title + steps) and the caption, left-aligned under the images. */
+.panel__footer {
+  display: grid;
+  gap: 10px;
+  padding: 16px 4px 2px;
+  border-top: 1px solid var(--line);
+}
+/* Title above the steps in both panels, so the two footers match at every width. */
+.workflow--inline {
+  gap: 10px;
+  margin-top: 0;
+}
+/* On a tinted panel the tags invert to white. */
+.flow--on-tint .pill--tag {
+  background: var(--white);
+}
+.caption--start {
+  font-size: 14px;
+  text-align: left;
+  text-wrap: pretty;
 }
 /* Widths from the design (329 / 248 / 375) so the three photos share a height. */
 .trio {
@@ -1695,4 +1827,67 @@ a.nav__link:hover {
 .site-footer__name {
   font-weight: 700;
   color: var(--ink-700);
+}
+/* Email on the right, balancing the details on the left; wraps under them on narrow screens. */
+.site-footer__email {
+  margin-left: auto;
+  color: var(--ink-700);
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease;
+}
+.site-footer__email:hover {
+  text-decoration-color: currentColor;
+}
+@media (max-width: 640px) {
+  .site-footer__email {
+    flex-basis: 100%;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
+
+/* ==========================================================================
+   Page transitions (src/PageTransitions.tsx)
+   Link clicks: the old page eases out and up, the new one eases in from just below. The header (while on screen)
+   is named, so it holds still between inner pages rather than fading with the page.
+   Elsewhere (first load, back/forward, no View Transition support): the page content eases in.
+   ========================================================================== */
+.site-header--anchored {
+  view-transition-name: site-header;
+}
+::view-transition-old(root) {
+  animation: page-out 0.2s cubic-bezier(0.4, 0, 1, 1) both;
+}
+::view-transition-new(root) {
+  animation: page-in 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) 0.08s both;
+}
+::view-transition-group(site-header) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+html[data-page-enter] main,
+html[data-page-enter] .site-footer {
+  animation: page-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }

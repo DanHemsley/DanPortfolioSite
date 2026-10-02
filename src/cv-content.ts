@@ -10,10 +10,14 @@ export const cvHero = {
   location: 'Tonbridge, Kent, UK',
 };
 
-export const cvStats: { value: string; text: string; accent: Accent }[] = [
-  { value: '12+ years', text: 'Across product design, UX and front-end development', accent: 'blue' },
-  { value: 'Two products launched', text: 'From early discovery through customer delivery at UpRate', accent: 'red' },
-  { value: '1–2 days saved per release', text: 'Through reusable design-system components and clearer Design QA', accent: 'purple' },
+// Figure + label split approved by Dan ("12+ years" -> "12+" / "years", etc.). The 83% card is worded from the
+// former UpRate point "Achieved an average 83% improvement in user satisfaction across measured product releases."
+// (removed from the UpRate points at Dan's request, so the figure appears once).
+export const cvStats: { figure: string; label: string; text: string; accent: Accent }[] = [
+  { figure: '12+', label: 'years', text: 'Across product design, UX and front-end development', accent: 'blue' },
+  { figure: '2', label: 'products launched', text: 'From early discovery through customer delivery at UpRate', accent: 'red' },
+  { figure: '1–2', label: 'days saved per release', text: 'Through reusable design-system components and clearer Design QA', accent: 'purple' },
+  { figure: '83%', label: 'average improvement in user satisfaction', text: 'Across measured product releases at UpRate', accent: 'orange' },
 ];
 
 export const cvProfile = {
@@ -53,20 +57,21 @@ export const cvExperience: Position[] = [
       'Built a reusable Figma design system covering components, variants, states, themes and tokens.',
       'Reduced design and QA work by approximately one to two days per release through clearer patterns and closer Engineering collaboration.',
       'Contributed directly to the Flutter codebase and remained involved through implementation and Design QA.',
-      'Achieved an average 83% improvement in user satisfaction across measured product releases.',
     ],
     tier: 'featured',
     caseStudy: { label: 'Explore the UpRate case study' },
   },
+  // Earlier roles: summary and points verbatim from the CV PDF (public/dan-hemsley-cv.pdf).
   {
     company: 'Independent Artist and Illustrator',
     role: 'Self-employed',
     dates: 'July 2021–July 2022',
+    summary: 'Built an independent creative business focused on illustration, digital content and online community building.',
     points: [
-      'Built an online audience of more than 100,000 followers.',
-      'Developed and published original creative work across digital channels.',
-      'Collaborated with the TikTok UK Creator programme.',
-      'Managed the creative, commercial and audience-development sides of an independent practice.',
+      'Built a personal creative brand across social platforms.',
+      'Grew an online audience to more than 100,000 followers through content strategy and live streaming.',
+      'Collaborated with the TikTok UK Creator team to trial new platform features.',
+      'Developed valuable insight into creator tools, digital communities and user engagement from the perspective of both customer and product user.',
     ],
     tier: 'standard',
   },
@@ -74,10 +79,12 @@ export const cvExperience: Position[] = [
     company: 'SixPorts',
     role: 'User Experience Designer',
     dates: 'March 2019–July 2021',
+    summary: 'Worked closely with clients and stakeholders to define product direction and improve user experience across a suite of digital products.',
     points: [
-      'Designed digital products and customer experiences from early requirements through flows, prototypes and final interfaces.',
-      'Turned stakeholder objectives and user needs into clearer journeys and interaction models.',
-      'Worked closely with clients and developers throughout design and delivery.',
+      'Unified multiple products into a single UX strategy, improving customer satisfaction and creating a more consistent product experience.',
+      'Produced early product concepts and interactive prototypes that accelerated stakeholder decision-making.',
+      'Validated requirements directly with clients, reducing friction throughout the design and development process.',
+      'Conducted user research and market analysis to identify opportunities and inform product decisions.',
     ],
     tier: 'standard',
   },
@@ -85,10 +92,12 @@ export const cvExperience: Position[] = [
     company: 'MCM Net',
     role: 'Front-End Developer',
     dates: 'July 2017–February 2019',
+    summary: 'Delivered responsive web products while improving collaboration between design and development teams.',
     points: [
-      'Designed and built responsive websites and digital experiences.',
-      'Connected visual design decisions with practical front-end implementation.',
-      'Introduced reusable approaches that made common delivery work approximately 50% faster.',
+      'Delivered multiple small to medium-sized websites for clients across a range of industries.',
+      'Introduced development processes that reduced delivery time for common website requirements by 50%.',
+      'Embedded user-centred design practices into development workflows, improving product quality and customer satisfaction.',
+      'Standardised components and templates, reducing design-to-development handover time and improving project consistency.',
     ],
     tier: 'compact',
   },
@@ -96,10 +105,12 @@ export const cvExperience: Position[] = [
     company: 'Pugpig',
     role: 'Designer and Front-End Developer',
     dates: 'August 2012–June 2017',
+    summary: 'Contributed to the design and development of digital publishing products used by global media organisations.',
     points: [
-      'Designed and built digital publishing experiences across mobile and web.',
-      'Translated editorial, commercial and technical requirements into responsive products.',
-      'Worked across interface design and front-end implementation within a product-focused team.',
+      'Collaborated within a multidisciplinary team of 10–15 developers, delivering hundreds of digital publishing titles for multiple publishers.',
+      'Unified the front-end design strategy, achieving full customer adoption, significantly reducing turnaround time for new customer onboarding.',
+      'Led the company’s visual identity across two rebrands, including website design and development and marketing materials.',
+      'Created wellbeing initiatives and championed mental health awareness within the company.',
     ],
     tier: 'compact',
   },
@@ -107,10 +118,10 @@ export const cvExperience: Position[] = [
     company: 'Calverley',
     role: 'Graphic Designer and Product Designer',
     dates: 'November 2007–July 2012',
+    summary: 'Delivered creative solutions across print and digital media.',
     points: [
-      'Designed brand, print and digital experiences for a range of clients.',
-      'Helped translate business requirements into clearer customer-facing products.',
-      'Contributed to enquiry improvements that made common enquiries approximately 65% faster.',
+      'Developed internal tools that reduced response times for client enquiries by 65%.',
+      'Established a new animation service that generated an additional sustained revenue stream for the business.',
     ],
     tier: 'compact',
   },
